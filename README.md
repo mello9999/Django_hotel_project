@@ -7,9 +7,6 @@ Member in team : 'P'EyeSangLuis Team' :dog:
 > * :man: Mr.Natchapol Patamawisut 61070507205
 > * :woman: Ms.Thanaporn Cheentada 61070507209
 
-# Project description
-<p align = 'center'> ...coming soon... </p>
-
 # Installing and Set up instructure 
 <p align = 'center'> ...coming soon... </p>
 
