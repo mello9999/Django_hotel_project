@@ -30,7 +30,44 @@ to run requirements.txt
 here <b>env/</b> folder contains all dependencies
 
 # Run
-<p align = 'center'> ...coming soon... </p>
+<ol>
+  <li>
+      clone repository 
+      <pre>$ git clone https://github.com/itsvinayak/user_login_and_register.git</pre>
+  </li>
+  <li>
+     make database settings and connect it to your local database 
+    <pre>$ cd ./src/iert </pre>
+    open <b>settings.py</b> file
+    <pre>
+                DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.mysql",
+                "NAME": "iert",
+                "USER": "root",
+                "HOST": "localhost",
+                "PASSWORD": "vinayak",
+                "PORT": "3306",
+                "OPTIONS": {"sql_mode": "traditional"},
+            }
+        }
+   </pre>
+   set this part according to needs.
+  </li>
+  <li>
+    run migrations 
+    <pre>$ python manage.py migrate</pre>
+  </li>
+  <li>
+    now, runserver 
+    <pre>$ python manage.py runserver</pre>
+  </li>
+ </ol>
+
+![alt text](https://github.com/itsvinayak/user_login_and_register/blob/master/Screenshot%20from%202019-07-23%2007-26-47.png)
+
+
+---
 
 # Built with 
 <p align = 'center'> ...coming soon... </p>
