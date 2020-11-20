@@ -33,7 +33,7 @@ here <b>env/</b> folder contains all dependencies
 <ol>
   <li>
       clone repository 
-      <pre>$ git clone https://github.com/itsvinayak/user_login_and_register.git</pre>
+      <pre>$ git clone https://github.com/Natchariyawong25/P-EYE-and-Friends-Hotel-Management.git</pre>
   </li>
   <li>
      make database settings and connect it to your local database 
@@ -63,9 +63,6 @@ here <b>env/</b> folder contains all dependencies
     <pre>$ python manage.py runserver</pre>
   </li>
  </ol>
-
-![alt text](https://github.com/itsvinayak/user_login_and_register/blob/master/Screenshot%20from%202019-07-23%2007-26-47.png)
-
 
 ---
 
