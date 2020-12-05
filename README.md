@@ -35,25 +35,7 @@ here <b>env/</b> folder contains all dependencies
       clone repository 
       <pre>$ git clone https://github.com/Natchariyawong25/P-EYE-and-Friends-Hotel-Management.git</pre>
   </li>
-  <li>
-     make database settings and connect it to your local database 
-    <pre>$ cd ./src/iert </pre>
-    open <b>settings.py</b> file
-    <pre>
-                DATABASES = {
-            "default": {
-                "ENGINE": "django.db.backends.mysql",
-                "NAME": "iert",
-                "USER": "root",
-                "HOST": "localhost",
-                "PASSWORD": "vinayak",
-                "PORT": "3306",
-                "OPTIONS": {"sql_mode": "traditional"},
-            }
-        }
-   </pre>
-   set this part according to needs.
-  </li>
+  ...
   <li>
     run migrations 
     <pre>$ python manage.py migrate</pre>
