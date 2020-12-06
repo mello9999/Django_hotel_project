@@ -20,6 +20,7 @@ from django.contrib.auth import views as auth
 
 from .router import router
 from rest_framework.authtoken import views
+from django.conf.urls import include, url
 
 urlpatterns = [
 
@@ -35,5 +36,6 @@ urlpatterns = [
     path('login/',user_view.Login,name='login'),
     path('logout/',auth.LogoutView.as_view(template_name='user/index.html'),name='logout'),
     path('register/',user_view.register,name='register'),
+
 
 ]
