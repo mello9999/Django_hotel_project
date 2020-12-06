@@ -70,10 +70,10 @@
             <li><a href="{% url "index" %}"><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
 
             {% if user.is_authenticated %}
-            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Sign out</a></li>
+            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Log out</a></li>
             {% else %}
-            <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Sign up</a></li>
-            <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign in</a></li>
+            <li><a href="{% url "register" %}"><span class="glyphicon glyphicon-user"></span> &nbsp; Register</a></li>
+            <li><a href="{% url "login" %}"><span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</a></li>
             {% endif %}
 
           </ul>
@@ -90,7 +90,6 @@
     <center><h1>Welcome, here</h1></center>
     {% else %}
     
-
     {% endif %}
     {% endblock %}
   </div>

@@ -55,15 +55,15 @@
             <div class="about-me pt-4 pt-md-0">
               <div class="title-box-2">
                 <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-                  <center><h3>Sign In</h3></center>
+                  <center><h3>Log in</h3></center>
                   {% csrf_token %}
                   <fieldset class="form-group">
                   {{ form|crispy}}
                   </fieldset>
-                  <ul><a href= "{% url 'register' %}" style="font-size: smaller;" >Forget password?</a></ul>
+                  <ul class="link1"><a href= "{% url 'register' %}" style="font-size: smaller;" >Forget password?</a></ul>
                   <center>
                     <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit">
-                      <span class="glyphicon glyphicon-log-in"></span> &nbsp; login</button>
+                      <span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</button>
                   </center>
                   <br/>
                   <center>
