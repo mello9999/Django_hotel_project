@@ -29,7 +29,7 @@ def register(request):
             return redirect('login')
     else:
         form = UserRegisterForm()
-    return render(request, 'user/register.html', {'form': form,'title':'reqister here'})
+    return render(request, 'user/register.html', {'form': form,'title':'register here'})
 
 ###################################################################################
 ################login forms###################################################
@@ -44,7 +44,7 @@ def Login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             form = login(request,user)
-            messages.success(request, f' wecome {username} !!')
+            messages.success(request, f' welcome {username} !!')
             return redirect('index')
         else:
             messages.info(request, f'account done not exit plz sign in')

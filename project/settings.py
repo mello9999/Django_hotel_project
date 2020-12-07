@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     
 ]
 
+CRISPY_TEMPLATE_PACK = 'bootstrap'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -103,9 +105,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': '*****',
         'USER': 'postgres',
-        'PASSWORD': '*****',
-        'HOST': 'localhost',
-        'PORT': '',
+        'PASSWORD': '*****',     
     }
 }
 

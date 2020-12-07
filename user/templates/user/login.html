@@ -1,20 +1,80 @@
 {% extends "user/index.html" %}
 {% load crispy_forms_tags %}
-{% block start %}
+{% load static %}
 
- <div class="content-section col-md-8 col-md-offset-2">
-  <center>
-  <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-    {% csrf_token %}
-    <fieldset class="form-group">
-      {{ form|crispy}}
-    </fieldset>
-   <center>
-    <button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-log-in"></span> &nbsp; login</button>
-  </center>
-  <br/>
-  <sub style="text-align: left;"><a href="{% url 'register' %}" style="text-decoration: none; color: blue; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
-  </form>
-</center>
- </div>
+{% block title %}login{% endblock %}
+
+{% block script %}
+    <script src="{% static 'js/login.js' %}"></script>
+{% endblock %}
+
+
+{% block start %}
+ <br/>
+ <div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="box-shadow-full">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="about-me pt-4 pt-md-0">
+              <div class="title-box-2">
+                <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+                  <center><img src="{% static './img/logo1.png' %}" width="400" height="100"/> </center>
+                  <br/>
+                  <div class="container">
+                    <h4>Check-in : </h4> <input id="startDate" width="360" />
+                    <h4>Check-out : </h4> <input id="endDate" width="360" />
+                  </div>
+                  <br/>
+                  <br/>
+                  <center>
+                    <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit">
+                      <span class="glyphicon glyphicon-search"></span> &nbsp; Search now</button>
+                  </center>
+                  <script>
+                      var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+                      $('#startDate').datepicker({
+                          minDate: today,
+                          maxDate: function () {
+                              return $('#endDate').val();
+                          }
+                      });
+                      $('#endDate').datepicker({
+                          minDate: function () {
+                              return $('#startDate').val();
+                          }
+                      });
+                  </script>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="about-me pt-4 pt-md-0">
+              <div class="title-box-2">
+                <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+                  <center><h3>Log in</h3></center>
+                  {% csrf_token %}
+                  <fieldset class="form-group">
+                  {{ form|crispy}}
+                  </fieldset>
+                  <ul class="link1"><a href= "{% url 'register' %}" style="font-size: smaller;" >Forget password?</a></ul>
+                  <center>
+                    <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit">
+                      <span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</button>
+                  </center>
+                  <br/>
+                  <center>
+                    <sub style="text-align: left;"><a href="{% url 'register' %}" style="font-size: small; text-decoration: none; color:grey; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
+                  </form>
+                </center>
+              </div>
+            </div>
+          </div>
+        </div>
+  </div>
+</div>
+
 {% endblock start %}
