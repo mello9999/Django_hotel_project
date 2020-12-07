@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
 ]
 
 MIDDLEWARE = [
@@ -100,9 +101,9 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'lab5',
+        'NAME': 'FinalProj',
         'USER': 'postgres',
-        'PASSWORD': '*******',
+        'PASSWORD': 'bank1333',
         'HOST': 'localhost',
         'PORT': '',
     }
