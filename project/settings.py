@@ -101,9 +101,9 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'FinalProj',
+        'NAME': '*****',
         'USER': 'postgres',
-        'PASSWORD': 'bank1333',
+        'PASSWORD': '*****',
         'HOST': 'localhost',
         'PORT': '',
     }
