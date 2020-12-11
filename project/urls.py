@@ -27,15 +27,23 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     ######### api path ##########################
-
     path('api/',include(router.urls)),
     path('api-token-auth/',views.obtain_auth_token,name='api-tokn-auth'),
 
     #####user related path##########################
     path('',include('user.urls')),
     path('login/',user_view.Login,name='login'),
-    path('logout/',auth.LogoutView.as_view(template_name='user/index.html'),name='logout'),
+    path('logout/',auth.LogoutView.as_view(template_name= 'index.html'),name='logout'),
     path('register/',user_view.register,name='register'),
+    path('search_now/',user_view.Searchnow,name='search_now'),
+    
+    path('check_status/',user_view.CheckStatus,name="check_status"),
+    path('single_room/',user_view.SingleRoomDetail,name="single"),
+    path('double_room/',user_view.DoubleRoomDetail,name="double"),
+    path('suite_room/',user_view.SuiteRoomDetail,name="suite"),
+    path('deluxe_room/',user_view.DeluxeRoomDetail,name="deluxe"),
+    path('premier_room/',user_view.PremierRoomDetail,name="premier"),
 
+    path('reserve/',user_view.HotelReservation,name="reserve"),
 
 ]

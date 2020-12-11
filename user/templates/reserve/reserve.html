@@ -1,0 +1,175 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Hotel Reservation{% endblock %}
+
+{% block script %}
+    <!-- <script src="{% static 'js/...' %}"></script> -->
+{% endblock %}
+
+{% block start %}
+<header class="row">
+    <!-- navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" class="styleheader" href="{% url "check_status" %}">  
+            <span class="fa fa-building "></span>  Lay View Hotel</a>
+        </div>
+    
+        <div class="collapse navbar-collapse" id="mainNavBar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;Account</a></li>
+            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Log out</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+</header>
+<div class="collapse navbar-collapse" id="mainNavBar">
+    <div class="col-md-6">
+      <ul class="nav navbar-nav navbar-lelf">
+        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <div class="row">
+        <form method="post" action="//submit.form" onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+            <div class="col-lg-6">
+                <br/>
+                <br/>
+                <br/>
+                <img src="{% static './img/room.jpg' %}" width="400" height="400"/>
+            </div>
+            <div class="col-lg-6">
+                <div style="max-width: 400px;">
+            </div>
+            <div style="padding-bottom: 18px;font-size : 24px;">
+            <bold/><h1>Hotel Reservation</h1></div>
+            <div style="display: flex; padding-bottom: 18px;max-width : 450px;">
+            <div style=" margin-left: 0; margin-right: 1%; width: 49%;">First name<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_2" name="data_2" style="max-width: 100%;" class="form-control" placeholder="Natchapoooo"/>
+            </div>
+            <div style=" margin-left: 1%; margin-right: 0; width: 49%;">Last name<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_3" name="data_3" style="max-width: 100%;" class="form-control" placeholder="Patamawisutooo"/>
+            </div>
+            </div><div style="padding-bottom: 18px;">Phone number<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_4" name="data_4" style="max-width : 450px;" class="form-control" placeholder="080123XXXX"/>
+            </div>
+            <div style="padding-bottom: 18px;">Email<span style="color: red;"> *</span><br/>
+            <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="test@gmail.com"/>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                    </div>
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
+                </div>
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_7" name="data_7" style="max-width : 250px;" class="form-control" placeholder="Mon Dec 14 2020"/>
+                    </div>                             
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_7') });</script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_8" name="data_8" style="max-width : 250px;" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_9" name="data_9" style="max-width : 250px;" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_10" name="data_10" style="max-width : 250px;" class="form-control"/>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div style="padding-bottom: 12px;">Room Type<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control" placeholder="Deluxe Room"/>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            </div>
+            <center>
+                <div style="padding-bottom: 18px;">
+                    <button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                    <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button>
+                </div>
+            </center>
+            </form>
+            
+            <script type="text/javascript">
+            function validateForm() {
+            if (isEmpty(document.getElementById('data_2').value.trim())) {
+            alert('First name is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_3').value.trim())) {
+            alert('Last name is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_4').value.trim())) {
+            alert('Phone is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_5').value.trim())) {
+            alert('Email is required!');
+            return false;
+            }
+            if (!validateEmail(document.getElementById('data_5').value.trim())) {
+            alert('Email must be a valid email address!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_6').value.trim())) {
+            alert('Arrival date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_7').value.trim())) {
+            alert('Departure date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_8').value.trim())) {
+            alert('Number of adults is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_9').value.trim())) {
+            alert('Number of children is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_10').value.trim())) {
+            alert('Number of room is required!');
+            return false;
+            }
+            return true;
+            }
+            function isEmpty(str) { return (str.length === 0 || !str.trim()); }
+            function validateEmail(email) {
+            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
+            return isEmpty(email) || re.test(email);
+            }
+            </script>
+</div>
+
+{% endblock start %}

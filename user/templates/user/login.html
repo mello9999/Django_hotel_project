@@ -1,11 +1,11 @@
-{% extends "user/index.html" %}
+{% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% load static %}
 
 {% block title %}login{% endblock %}
 
 {% block script %}
-    <script src="{% static 'js/login.js' %}"></script>
+    <!-- <script src="{% static 'js/...' %}"></script> -->
 {% endblock %}
 
 
@@ -19,30 +19,35 @@
           <div class="col-md-6">
             <div class="about-me pt-4 pt-md-0">
               <div class="title-box-2">
-                <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-                  <center><img src="{% static './img/logo1.png' %}" width="400" height="100"/> </center>
+                <form action="/search_now/" method="POST"  style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+                  {% csrf_token %}
+                  <center><img src="{% static './img/logo1.png' %}" width="320" height="100"/> </center>
                   <br/>
                   <div class="container">
-                    <h4>Check-in : </h4> <input id="startDate" width="360" />
-                    <h4>Check-out : </h4> <input id="endDate" width="360" />
+                    <h4>Check-in : </h4> <input id="check_in" type="text" name="check_in" width="300" />
+                    <h4>Check-out : </h4> <input id="check_out" type="text"  name="check_out" width="300" />
                   </div>
                   <br/>
                   <br/>
                   <center>
-                    <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit">
-                      <span class="glyphicon glyphicon-search"></span> &nbsp; Search now</button>
+                    <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit" name="search_now">
+                    <span class="glyphicon glyphicon-search"></span> &nbsp; Search now</button>
                   </center>
+                  <br/>
+                  <br/>
+                  <br/>
+                  <br/>
                   <script>
                       var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-                      $('#startDate').datepicker({
-                          minDate: today,
+                      $('#check_in').datepicker({
+                          check_out: today,
                           maxDate: function () {
-                              return $('#endDate').val();
+                              return $('#check_out').val();
                           }
                       });
-                      $('#endDate').datepicker({
+                      $('#check_out').datepicker({
                           minDate: function () {
-                              return $('#startDate').val();
+                              return $('#check_in').val();
                           }
                       });
                   </script>
@@ -54,20 +59,27 @@
           <div class="col-md-6">
             <div class="about-me pt-4 pt-md-0">
               <div class="title-box-2">
-                <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-                  <center><h3>Log in</h3></center>
+                <form action="/login/" method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+                  <center><h2>Log in</h2></center>
+                  <br/>
                   {% csrf_token %}
                   <fieldset class="form-group">
                   {{ form|crispy}}
                   </fieldset>
-                  <ul class="link1"><a href= "{% url 'register' %}" style="font-size: smaller;" >Forget password?</a></ul>
+                  <div class="form-group form-check">
+                    <label class="form-check-label">
+                      <input class="form-check-input" type="checkbox"> Remember me
+                    </label>
+                  </div>
+                  <br/>
                   <center>
                     <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit">
                       <span class="glyphicon glyphicon-log-in"></span> &nbsp; Log in</button>
                   </center>
                   <br/>
+                  <br/>
                   <center>
-                    <sub style="text-align: left;"><a href="{% url 'register' %}" style="font-size: small; text-decoration: none; color:grey; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
+                    <sub style="text-align: left;"><a href="{% url 'register' %}" style="font-size: small; text-decoration: none; color:grey; padding:2%; cursor:pointer; margin-right:2%;">don't have account, Register </a></sub>
                   </form>
                 </center>
               </div>

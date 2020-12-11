@@ -1,10 +1,10 @@
-{% extends "user/index.html" %}
+{% extends "index.html" %}
 {% load crispy_forms_tags %}
 {% block start %}
 
 <div class="content-section col-md-8 col-md-offset-2">
-  <center><h2>Register</h2></center>
   <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+    <center><h2>Register</h2></center>
     {% csrf_token %}
     <fieldset class="form-group">
       {{ form|crispy}}

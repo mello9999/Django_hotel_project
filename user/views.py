@@ -9,11 +9,22 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
 
+from django.shortcuts import get_object_or_404
+from django.views.generic import View
+from django.http import JsonResponse
+from django import forms
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.decorators import method_decorator
+from django.forms.models import model_to_dict
+from django.db.models import Max
+from django.db import connection
+import json
+
 
 ##################################################################
 ####################index#######################################
 def index(request):
-    return render(request, 'user/index.html',{'title':'index'})
+    return render(request, 'index.html',{'title':'index'}) # firstpage >> Guest view
 
 ########################################################################
 ########### register here #####################################
@@ -57,8 +68,47 @@ def Login(request):
         if user is not None:
             form = login(request,user)
             messages.success(request, f' welcome {username} !!')
-            return redirect('index')
+            return redirect('check_status')
         else:
             messages.info(request, f'account done not exit plz sign in')
     form = AuthenticationForm()
     return render(request, 'user/login.html', {'form':form,'title':'log in'})
+
+def Searchnow(request): 
+    if request.method == 'POST':
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        data = {'check_in' : check_in, 'check_out':check_out}
+        #print(data,1111111)
+    return render(request, 'index.html')
+
+def CheckStatus(request):
+    if request.method == 'POST':
+        check_in = request.POST.get('check_in')
+        check_out = request.POST.get('check_out')
+        data = {'check_in' : check_in, 'check_out':check_out}
+        
+    return render(request, 'status/check.html')
+
+def SingleRoomDetail(request):
+
+    return render(request, 'room/single.html')
+
+def DoubleRoomDetail(request):
+
+    return render(request, 'room/double.html')
+
+def SuiteRoomDetail(request):
+    
+    return render(request, 'room/suite.html')
+
+def DeluxeRoomDetail(request):
+    
+    return render(request, 'room/deluxe.html')
+
+def PremierRoomDetail(request):
+    
+    return render(request, 'room/premier.html')
+
+def HotelReservation(request):
+    return render(request, 'reserve/reserve.html')
