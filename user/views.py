@@ -34,18 +34,6 @@ def register(request):
         form = UserRegisterForm(request.POST) or None
         if form.is_valid():
             username = request.POST.get('username')
-            #########################mail####################################
-            htmly = get_template('user/Email.html')
-            d = { 'username': username }
-            subject, from_email, to = 'hello', 'from@example.com', 'to@emaple.com'
-            html_content = htmly.render(d)
-            msg = EmailMultiAlternatives(subject, html_content, from_email, [to])
-            msg.attach_alternative(html_content, "text/html")
-            try:
-                msg.send()
-            except:
-                print("error in sending mail")
-            ##################################################################
             form.save()
             username = form.cleaned_data.get('username')
             messages.success(request, f'Your account has been created! You are now able to log in')
