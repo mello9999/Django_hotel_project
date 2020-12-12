@@ -7,9 +7,6 @@ Member in team : 'P'EyeSangLuis Team' :dog:
 > * :man: Mr.Natchapol Patamawisut 61070507205
 > * :woman: Ms.Thanaporn Cheentada 61070507209
 
-# Project description
-<p align = 'center'> ...coming soon... </p>
-
 # Installing and Set up instructure 
 #### Virtualenv & Dependencies
 
@@ -29,15 +26,27 @@ to run requirements.txt
 
 here <b>env/</b> folder contains all dependencies
 
-# Run
+# Run at first time
 <ol>
   <li>
       clone repository 
       <pre>$ git clone https://github.com/Natchariyawong25/P-EYE-and-Friends-Hotel-Management.git</pre>
   </li>
-  ...
   <li>
-    run migrations 
+    setting in 'setting.py  
+    <pre>
+      DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'hotel',
+        'USER': 'postgres',
+        'PASSWORD': '*******',    //ใส่ password pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database 
+        }
+      }
+    </pre>
+  </li>
+  <li>
+    run migrations ไว้เชื่อมกับ database 
     <pre>$ python manage.py migrate</pre>
   </li>
   <li>
@@ -46,7 +55,17 @@ here <b>env/</b> folder contains all dependencies
   </li>
  </ol>
 
----
+# Run after set up instructure
+<ol>
+  <li>
+    now, runserver 
+    <pre>$ python manage.py runserver</pre>
+  </li>
+</ol>
 
 # Built with 
-<p align = 'center'> ...coming soon... </p>
+- [x] HTML + CSS ใช้ทำหน้า Website 
+- [X] django เพื่อเป็นตัวกลางในการเชื่อม database กับ pgAdmin 
+
+# Version
+> version 1.0.0 base on 13/12/2020 
