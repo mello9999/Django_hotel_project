@@ -9,39 +9,12 @@
 {% endblock %}
 
 {% block start %}
-
-<header class="row">
-    <!-- navbar-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" class="styleheader" href="{% url "check_status" %}">  
-            <span class="fa fa-building "></span>  Lay View Hotel</a>
-        </div>
-    
-        <div class="collapse navbar-collapse" id="mainNavBar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;Account</a></li>
-            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Log out</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-</header>
-
 <div class="collapse navbar-collapse" id="mainNavBar">
     <div class="col-md-6">
       <ul class="nav navbar-nav navbar-lelf">
         <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
         <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
+        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
       </ul>
     </div>
   </div>

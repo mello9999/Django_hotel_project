@@ -9,47 +9,18 @@
 {% endblock %}
 
 {% block start %}
-
-<header class="row">
-    <!-- navbar-->
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" class="styleheader" href="{% url "check_status" %}">  
-            <span class="fa fa-building "></span>  Lay View Hotel</a>
-        </div>
-    
-        <div class="collapse navbar-collapse" id="mainNavBar">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;Account</a></li>
-            <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Log out</a></li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-</header>
-
 <div class="collapse navbar-collapse" id="mainNavBar">
     <div class="col-md-6">
       <ul class="nav navbar-nav navbar-lelf">
         <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
         <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
+        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
       </ul>
     </div>
   </div>
 </div>
 
-<div class="container">
-    <br/>
-    <br/>
+<div class="container" style="padding-bottom: 18px;font-size : 18px;">
     <div class="row">
       <div class="col-lg-8">
         <bold /> <h2>The Premier Room - Lay View Hotel</h2>
@@ -76,8 +47,125 @@
           </div>
         </div>
     </div>
-    <div class="col-lg-4">
-        <h2>Booking</h2>
+    <div class="col-lg-3">
+      <div class="row">
+        <div></div>
+        <div class="container">
+          <form method="post" action="//submit.form" onSubmit="return validateForm();" >
+            <br/>
+            <div style="padding-bottom: 18px;font-size : 18px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_6" name="data_6" style="max-width : 300px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                    </div>
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
+                </div>
+                <div class="col-md-3">
+                    <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_7" name="data_7" style="max-width : 300px;" class="form-control" placeholder="Mon Dec 14 2020"/>
+                    </div>                             
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_7') });</script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_8" name="data_8" style="max-width : 80px;" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_9" name="data_9" style="max-width : 80px;" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                  <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
+                      <input type="number" id="data_10" name="data_10" style="max-width :80px;" class="form-control" required/>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Room Price<br/>
+                  <input type="text" id="data_6" name="data_11" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Extra Facilities Price<br/>
+                  <input type="text" id="data_6" name="data_12" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Total Price<br/>
+                  <input type="text" id="data_6" name="data_13" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+            </div>
+              <div>
+                <button max-width :1200px; font-size: 32px; padding:2%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                  <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!
+                </button>
+              </div>
+            </div>
+            </form>
+            <script type="text/javascript">
+            function validateForm() {
+            if (isEmpty(document.getElementById('data_6').value.trim())) {
+            alert('Check-In date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_7').value.trim())) {
+            alert('Check-Out date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_8').value.trim())) {
+            alert('Number of adults is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_9').value.trim())) {
+            alert('Number of children is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_10').value.trim())) {
+            alert('Number of room is required!');
+            return false;
+            }
+            return true;
+            }
+            function isEmpty(str) { return (str.length === 0 || !str.trim()); }
+            </script>
+        </div>
+      </div>
+      <div></div>
+      <br/>
+      <div class="row">
+        <div class="container">
+          <h3>Additional Facilities</h3>
+          <div class="row">
+            <div class="col-md-2">
+              <div style="display: inline;">
+                <input type="checkbox" id="extra_bed" name="extra_bed" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Extra bed
+                <input type="number" id="extra_bed1" name="extra_bed1" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control"/>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" id="extra_bed2" name="extra_bed2" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="150 baht" readonly/>
+            </div>
+          </div>
+          <div></div>
+          <div class="row">
+            <div class="col-md-2">
+              <div style="display: inline;">
+                <input type="checkbox" id="dinner" name="dinner" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Dinner 
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" id="dinner1" name="dinner1" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="200 baht" readonly/>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <bold /><h3>Room Information</h3>

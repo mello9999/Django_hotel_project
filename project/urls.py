@@ -45,5 +45,6 @@ urlpatterns = [
     path('premier_room/',user_view.PremierRoomDetail,name="premier"),
 
     path('reserve/',user_view.HotelReservation,name="reserve"),
+    path('invoice/',user_view.Invoice,name="invoice"),
 
 ]

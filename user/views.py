@@ -100,3 +100,6 @@ def PremierRoomDetail(request):
 
 def HotelReservation(request):
     return render(request, 'reserve/reserve.html')
+
+def Invoice(request):
+    return render(request,'invoice/invoice.html')

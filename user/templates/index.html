@@ -114,7 +114,6 @@
           <div class="collapse navbar-collapse" id="mainNavBar">
             <ul class="nav navbar-nav navbar-right">
               <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-              <li><a href="#"><span class="glyphicon glyphicon-user"></span> &nbsp;Account</a></li>
               <li><a href="{% url "logout" %}"><span class="glyphicon glyphicon-log-out"></span> &nbsp; Log out</a></li>
             </ul>
           </div>
@@ -126,7 +125,7 @@
         <ul class="nav navbar-nav navbar-lelf">
           <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
           <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-          <li><a href="#"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
+          <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
         </ul>
       </div>
     </div>
