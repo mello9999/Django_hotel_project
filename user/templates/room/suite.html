@@ -10,14 +10,14 @@
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
-    <div class="col-md-6">
-      <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
-        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
-      </ul>
-    </div>
+  <div class="col-md-6">
+    <ul class="nav navbar-nav navbar-lelf">
+      <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+      <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+      <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+    </ul>
   </div>
+</div>
 </div>
 
 <div class="container" style="padding-bottom: 18px;font-size : 18px;">
@@ -103,9 +103,8 @@
               </div>
             </div>
               <div>
-                <button max-width :1200px; font-size: 32px; padding:2%; class="btn btn-success" type="submit" name="booking" value="Submit">
-                  <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!
-                </button>
+                <a href="{% url "total_payment" %}"><button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                  <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button></a>
               </div>
             </div>
             </form>

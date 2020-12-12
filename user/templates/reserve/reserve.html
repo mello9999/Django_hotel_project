@@ -14,11 +14,12 @@
       <ul class="nav navbar-nav navbar-lelf">
         <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
         <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
+        <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
       </ul>
     </div>
   </div>
 </div>
+
 <div class="container">
     <div class="row">
         <form method="post" action="//submit.form" onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
@@ -35,7 +36,7 @@
                 <div style="max-width: 400px;">
             </div>
             <div style="padding-bottom: 18px;font-size : 24px;">
-            <bold/><h1>Hotel Reservation</h1></div>
+            <bold/><h1>Booking Room</h1></div>
             <div style="display: flex; padding-bottom: 18px;max-width : 450px;">
             <div style=" margin-left: 0; margin-right: 1%; width: 49%;">First name<span style="color: red;"> *</span><br/>
             <input type="text" id="data_2" name="data_2" style="max-width: 100%;" class="form-control" placeholder="Natchapoooo"/>
@@ -85,6 +86,7 @@
                     <div style="padding-bottom: 12px;">Room Type<span style="color: red;"> *</span><br/>
                         <input type="text" id="data_11" name="data_11" style="max-width : 250px; font-size: 12px;" class="form-control" placeholder="Deluxe Room"/>
                     </div>
+                    
                 </div>
             </div>
             <div class="row">
@@ -99,8 +101,8 @@
             </div>
             <center>
                 <div style="padding-bottom: 18px;">
-                    <button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
-                    <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button>
+                    <a href="{% url "total_payment" %}"><button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                        <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button></a>
                 </div>
             </center>
             </form>

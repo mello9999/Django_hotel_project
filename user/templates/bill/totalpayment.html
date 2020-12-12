@@ -1,0 +1,84 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Invoice{% endblock %}
+
+{% block script %}
+    <!-- <script src="{% static 'js/...' %}"></script> -->
+{% endblock %}
+
+{% block start %}
+<div class="collapse navbar-collapse" id="mainNavBar">
+    <div class="col-md-6">
+      <ul class="nav navbar-nav navbar-lelf">
+        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+        <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <center>
+            <h1><span class="glyphicon glyphicon-shopping-cart"></span> Hotel Room Cart</h1>
+        </center>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="container">
+            <table id="cart" class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th style="width:50%">Room</th>
+                        <th style="width:10%">Price</th>
+                        <th style="width:8%">Quantity</th>
+                        <th style="width:22%" class="text-center">Subtotal</th>
+                        <th style="width:10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-th="Room">
+                            <div class="row">
+                                <div class="col-sm-2 hidden-xs"><img src="{% static './img/single/single4.jpg' %}"  class="img-responsive"/></div>
+                                <div class="col-sm-10">
+                                    <h4 class="nomargin">Single room</h4>
+                                </div>
+                            </div>
+                        </td>
+                        <td data-th="Price">฿1500</td>
+                        <td data-th="Quantity">
+                            <input type="number" class="form-control text-center" value="1">
+                        </td>
+                        <td data-th="Subtotal" class="text-center">฿1500</td>
+                        <td class="actions" data-th="">
+                            <button id="add_cart" class="btn btn-info btn-sm"><i class="fa fa-plus"></i></button>
+                            <button id="delete_cart" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr class="visible-xs">
+                        <td class="text-center"><strong>Total</strong></td>
+                    </tr>
+                    <tr>
+                        <td><a href="{% url "check_status" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                        <td colspan="{% url "check_status" %}" class="hidden-xs"></td>
+                        <td class="hidden-xs text-center"><strong>Total
+                            <td data-th="Subtotal">
+                                <input type="text" class="form-control text-center" placeholder="total price" readonly>
+                            </td>
+                        </strong></td>
+                        <td><a href="{% url "pay_form" %}" class="btn btn-success btn-block">Confirm Booking <i class="fa fa-angle-right"></i></a></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock start %}

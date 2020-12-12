@@ -45,6 +45,7 @@ urlpatterns = [
     path('premier_room/',user_view.PremierRoomDetail,name="premier"),
 
     path('reserve/',user_view.HotelReservation,name="reserve"),
-    path('invoice/',user_view.Invoice,name="invoice"),
+    path('total_payment/',user_view.TotalPayment,name="total_payment"),
+    path('pay_form/',user_view.PaymentForm,name="pay_form"),
 
 ]

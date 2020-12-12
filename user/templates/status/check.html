@@ -10,15 +10,16 @@
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
-    <div class="col-md-6">
-      <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
-        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-download-alt"></span> &nbsp; Bill info</a></li>
-      </ul>
-    </div>
+  <div class="col-md-6">
+    <ul class="nav navbar-nav navbar-lelf">
+      <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+      <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+      <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+    </ul>
   </div>
 </div>
+</div>
+
 
 <div class = "container">
   <div class="row">
@@ -79,9 +80,19 @@
             <img src="{% static './img/single/single4.jpg' %}" width="310" height="300"/>
             <h4>Single Room</h4>
           </td>
-          <td>-- Available --</td>
-          <td>2.0</td>
-          <td>5.0</td>
+          <td data-th="Room Status">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="0-4 room" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+          </td>
           <td>1500 baht</td>
           <td>
             <a href="{% url "single" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
@@ -93,9 +104,19 @@
             <img src="{% static './img/double/double4.jpg' %}" width="310" height="300"/>
             <h4>Double Room</h4>
           </td>
-          <td>-- Available --</td>
-          <td>3.0</td>
-          <td>4.0</td>
+          <td data-th="Room Status">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="0-4 room" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
           <td>2500 baht</td>
           <td>
             <a href="{% url "double" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
@@ -107,9 +128,19 @@
             <img src="{% static './img/suite/suite4.jpg' %}" width="310" height="300"/>
             <h4>Suite Room</h4>
           </td>
-          <td>-- Full --</td>
-          <td>0.0</td>
-          <td>3.0</td>
+          <td data-th="Room Status">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="0-4 room" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
           <td>3000 baht</td>
           <td>
             <a href="{% url "suite" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
@@ -121,9 +152,19 @@
             <img src="{% static './img/deluxe/deluxe4.jpg' %}" width="310" height="300"/>
             <h4>Deluxe Room</h4>
           </td>
-          <td>-- Available --</td>
-          <td>4.0</td>
-          <td>4.0</td>
+          <td data-th="Room Status">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="0-4 room" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
           <td>4000 baht</td>
           <td>
             <a href="{% url "deluxe" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
@@ -135,9 +176,19 @@
             <img src="{% static './img/premier/premier4.jpg' %}" width="310" height="300"/>
             <h4>Premier Room</h4>
           </td>
-          <td>-- Full --</td>
-          <td>0.0</td>
-          <td>5.0</td>
+          <td data-th="Room Status">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input type="text" class="form-control text-center" style="max-width:150px;" placeholder="0-4 room" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+          </td>
           <td>5000 baht</td>
           <td>
             <a href="{% url "premier" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">

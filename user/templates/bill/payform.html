@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Invoice{% endblock %}
+
+{% block script %}
+    <!-- <script src="{% static 'js/...' %}"></script> -->
+{% endblock %}
+
+{% block start %}
+<div class="collapse navbar-collapse" id="mainNavBar">
+    <div class="col-md-6">
+      <ul class="nav navbar-nav navbar-lelf">
+        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+        <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+      </ul>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        
+    </div>
+</div>
+
+
+{% endblock start %}

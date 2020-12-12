@@ -101,5 +101,8 @@ def PremierRoomDetail(request):
 def HotelReservation(request):
     return render(request, 'reserve/reserve.html')
 
-def Invoice(request):
-    return render(request,'invoice/invoice.html')
+def TotalPayment(request):
+    return render(request,'bill/totalpayment.html')
+
+def PaymentForm(request):
+    return render(request,'bill/payform.html')
