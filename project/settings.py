@@ -108,22 +108,13 @@ REST_FRAMEWORK = {
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-<<<<<<< HEAD
         'NAME': 'hotel_management',
         'USER': 'postgres',
         'PASSWORD': '123456789',     
         'HOST': 'localhost',
         'PORT': '',
-=======
-        'NAME': 'hotel',
-        'USER': 'natchapolpatamawisut@dd-dinner-dog',
-        'PASSWORD': 'Bank_1333',     
-        'HOST': 'dd-dinner-dog.postgres.database.azure.com',
-        'PORT': '5432',
->>>>>>> 021a21bdd3fc42e34ecda9d330181766dd922224
     }
 }
-
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 

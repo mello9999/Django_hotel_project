@@ -22,7 +22,7 @@ from django.contrib.auth import views as auth
 from .router import router
 from rest_framework.authtoken import views
 from django.conf.urls import include, url
-
+from invoice import views as invoice_view
 urlpatterns = [
 
     path('admin/', admin.site.urls),
@@ -50,6 +50,7 @@ urlpatterns = [
     path('pay_form/',user_view.PaymentForm,name="pay_form"),
 
     path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
-    
+
+    path('invoice/',user_view.Invoice,name="invoice")
 
 ]
