@@ -22,27 +22,36 @@
 </div>
 
 
-<div class = "container">
+<div class = "container" style="font-size: 20px;">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-12">
       <div class="box-shadow-full">
-        <br/> 
         <br/>
         <h1>Lay View Hotel</h1>
         <div class="row">
+          <div class="col-md-3">
+            <h4>Room Type<span style="color: red;"> *</span> : </h4>
+            <select id="inputState" class="form-control" style="max-width :600px;">
+              <option selected>Choose...</option>
+              <option>Single Room</option>
+              <option>Double Room</option>
+              <option>Suite Room</option>
+              <option>Deluxe Room</option>
+              <option>Premier Room</option>
+            </select>
+          </div>
           <div class="col-md-4">
             <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" />
-          </div>
-          <div class="col-md-4">
             <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" />
           </div>
-          <br/> 
           <br/>
-          <div class="row">
-            <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit" name="search_now" >
+          <div class="col-md-4">
+            <button font-size: 2rem; padding:10%; class="btn btn-outline-dark" type="submit" name="search_now" >
               <span class="glyphicon glyphicon-search"></span> &nbsp; Search now
             </button>
           </div>
+          <br/> 
+          <br/>
           <br/>
           <br/>
         </div>

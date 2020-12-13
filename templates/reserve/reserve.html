@@ -20,7 +20,7 @@
   </div>
 </div>
 
-<div class="container">
+<div class="container" style="font-size: 18px;">
     <div class="row">
         <form method="post" action="//submit.form" onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
             <div class="col-lg-6">
@@ -77,22 +77,30 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
                     <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_10" name="data_10" style="max-width : 400px; font-size: 12px;" class="form-control"placeholder="Please Select Number" required/>
+                        <input type="number" id="data_10" name="data_10" style="max-width :600px; font-size: 12px;" class="form-control"placeholder="Please Select Number" required/>
                     </div>
-                </div>
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;">Room Type<span style="color: red;"> *</span><br/>
-                        <input type="text" id="data_11" name="data_11" style="max-width : 250px; font-size: 12px;" class="form-control" placeholder="Deluxe Room"/>
-                    </div>
-                    
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-12">
+                    <h4>Room Type<span style="color: red;"> *</span></h4>
+                    <select id="inputState" class="form-control" style="max-width :600px;">
+                        <option selected>Choose...</option>
+                        <option>Single Room</option>
+                        <option>Double Room</option>
+                        <option>Suite Room</option>
+                        <option>Deluxe Room</option>
+                        <option>Premier Room</option>
+                    </select>
+                </div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-lg-12">
                     <div style="padding-bottom: 12px;">Total Price<br/>
-                        <input type="text" id="data_12" name="data_12" style="max-width :200px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                        <input type="text" id="data_12" name="data_12" style="max-width :600px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
                     </div>
                 </div>
             </div>
@@ -101,7 +109,7 @@
             </div>
             <center>
                 <div style="padding-bottom: 18px;">
-                    <a href="{% url "total_payment" %}"><button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                    <a href="{% url "total_payment" %}"><button font-size: 10rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
                         <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button></a>
                 </div>
             </center>

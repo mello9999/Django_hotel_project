@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Invoice{% endblock %}
+
+{% block script %}
+    <!-- <script src="{% static 'js/...' %}"></script> -->
+{% endblock %}
+
+{% block start %}
+<div class="card">
+
+</div>
+
+<style>
+    .card {
+        margin: 40px 0px;
+        padding: 40px 50px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
+    }
+</style>
+{% endblock start %}
