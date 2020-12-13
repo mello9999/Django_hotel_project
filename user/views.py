@@ -64,11 +64,11 @@ def Login(request):
 
 def Searchnow(request): 
     if request.method == 'POST':
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
+        check_in = request.POST['check_in']
+        check_out = request.POST['check_out']
         data = {'check_in' : check_in, 'check_out':check_out}
-        #print(data,1111111)
-    return render(request, 'index.html')
+        print(data,1111111)
+    return render(request, 'index.html', data)
 
 def CheckStatus(request):
     if request.user.is_authenticated:
