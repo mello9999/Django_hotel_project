@@ -50,5 +50,6 @@ urlpatterns = [
     path('pay_form/',user_view.PaymentForm,name="pay_form"),
 
     path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
+    
 
 ]

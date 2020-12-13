@@ -66,16 +66,20 @@ CREATE TABLE "Invoice"(
     invoice_no   character varying(100),
     invoice_date date,
     booking_id   integer,
+    account_id   integer,
     due_date     date,
     total        money,
     vat          money,
     amount_due   money, 
     CONSTRAINT "PK_invoice" PRIMARY KEY (invoice_no),
     CONSTRAINT "FK_129" FOREIGN KEY (booking_id)
-        REFERENCES "Reservation"(booking_id)
+        REFERENCES "Reservation"(booking_id),
+    CONSTRAINT "FK_1999" FOREIGN KEY (account_id)
+        REFERENCES "Account" (account_id)
 );
 
 CREATE INDEX "fkIdx_129" ON "Invoice"(booking_id);
+CREATE INDEX "fkIdx_1999" ON "Invoice"(account_id);
 
 CREATE TABLE "Invoice_line_item"(
     invoice_no     character varying(100),
