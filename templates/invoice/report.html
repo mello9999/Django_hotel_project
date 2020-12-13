@@ -1,0 +1,35 @@
+{% extends 'index.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title %}Report{% endblock %}
+
+{% block title_name %}Report{% endblock %}
+
+{% block content %}
+    
+    <table class='table table-bordered table-hover'>
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            {% for name in column_name %}
+            <th>{{ name }} </th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+    {% for lineitem in data %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ lineitem.invoice_no }}</td>
+            <td>{{ lineitem.invoice_date|default:""}}</td>
+            <td>{{ lineitem.account_id }}</td>
+            <!--td>{{ lineitem.customer_name }}</td-->
+            <td>{{ lineitem.due_date|default:""  }}</td>
+            <td>{{ lineitem.total|intcomma }}</td>
+            <td>{{ lineitem.vat|intcomma }}</td>
+            <td>{{ lineitem.amount_due|intcomma }}</td>
+        <tr>
+    {% endfor %}
+        </tbody>
+{% endblock %}

@@ -124,3 +124,6 @@ def PaymentForm(request):
         return render(request,'bill/payform.html')
     else: 
         return index(request)
+
+def Invoice(request):
+    return render(request,'invoice/invoice.html')
