@@ -1,16 +1,187 @@
-{% extends "index.html" %}
-
+{% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Invoice{% endblock %}
+{% block title %}Invoice Forms{% endblock %}
 
 {% block script %}
-    <!-- <script src="{% static 'js/...' %}"></script> -->
+    <script src="{% static 'js/invoice.js' %}"></script>
 {% endblock %}
 
-{% block start %}
+{% block content %}
 
+    <div style="font-size:0;" class="bg-secondary">
+        <input type='image' id='btnNew' src="{% static 'images/newOn.gif' %}"  alt="newOn">
+        <input type='image' id='btnEdit' src="{% static 'images/editOn.gif' %}"  alt="editOn">
+        <input type='image' id='btnSave' src="{% static 'images/saveOn.gif' %}"  alt="saveOn">
+        <input type='image' id='btnDelete' src="{% static 'images/deleteOn.gif' %}"  alt="deleteOn">
+        <input type='image' id='btnPdf' src="{% static 'images/pdfOn.gif' %}"  alt="pdfOn">
+        <input type='image' id='btnPrint' src="{% static 'images/printOn.gif' %}"  alt="printOn">
+    </div>
+    <br />
+    <form id='form_invoice' action='/'>
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class='form-row align-items-center'>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Invoice No :</div>
+                    </div>
+                    <input type='text' id='txt_InvoiceNo' name='invoice_no' class='form-control' placeholder='Invoice No'>
+                </div>
+            </div>
+            <div class="col-0 col-lg-1"></div>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Invoice Date :</div>
+                    </div>
+                    <input type='text' id='txt_InvoiceDate' name='invoice_date' class='form-control' required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Check this checkbox to continue.</div>
+                    <button type='button' class="btn btn-default" id='btn_InvoiceDate'>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class='form-row'>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Customer :</div>
+                    </div>
+                    <input type='text' id='txt_CustomerCode' name='customer_code' class='form-control' placeholder='Customer Code' required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Check this checkbox to continue.</div>
+                    <button type='button' class="btn btn-default btn-sm search_customer_code">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    <input type='text' id='txt_CustomerName' name='customer_name' class='form-control' placeholder='Customer Name' value='' readonly>
+                    <input type='hidden' id='txt_DueDate' name='due_date' />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    Products Sold:
+    <div id='div_table' class="table-responsive-sm table-editable">
+        {% block main %}
+        <table id='table_main' class="table table-sm table-fixed table-bordered">
+            <thead>
+                <tr class="d-flex">
+                    <td class="col-1 table-active" align="center"><b>#</b></td>
+                    <th class="col-2 table-active" scope="row" >*Product Code</th>
+                    <th class="col-3 table-active" scope="row" >Name</th>
+                    <th class="col-2 table-active" scope="row" >*Unit Price</th>
+                    <th class="col-1 table-active" scope="row" >*Quantity</th>
+                    <th class="col-2 table-active" scope="row" >Extended Price</th>
+                    <td class="col-1" align="center">
+                        <span class="table-add glyphicon glyphicon-plus"></span>
+                    </td>
+                </tr>
+                <tr class="d-flex hide">
+                    <td class="col-1 order_no table-active" scope="row" align="center"></td>
+                    <td class="col-2 project_code_1" scope="row" align="right">
+                        <span class='project_code'></span>
+                        <button type='button' class="btn btn-default btn-sm search_product_code">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </td>
+                    <td class="col-3 product_name table-success" scope="row"></td>
+                    <td class="col-2 unit_price" scope="row" pattern="^[0-9]" align="right" contenteditable="true"></td>
+                    <td class="col-1 quantity" scope="row" pattern="^[0-9]" align="right" contenteditable="true"></td>
+                    <td class="col-2 extended_price table-success" scope="row" align="right"></td>
+                    <td class="col-1"align="center">
+                        <span class="table-remove glyphicon glyphicon-remove"></span>
+                    </td>
+                </tr>                
+            </thead>
+            <tbody>
 
+            </tbody>
+            <tfoot>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>Total Price : </td>
+                    <td class="col-2 table-success" scope="row" align="right"><label id='lbl_TotalPrice' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_TotalPrice' name='total' />
+                </tr>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>VAT : </td>
+                    <td class="col-2 table-success" scope="row" align="right"><label id='lbl_VAT' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_VAT' name='vat' />
+                </tr>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>Amount Due : </td>
+                    <td class="col-2 table-success" scope="row" align="right"><label id='lbl_AmountDue' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_AmountDue' name='amount_due' />
+                </tr>
+            </toot>
+        </table>
+        {% endblock %}
+    </div>
+    </form>
 
+<!-- The Modal -->
+<div class="modal" id="modal_form">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <input type='hidden' id='txt_modal_param' />
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">List Of Value</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
 
-{% endblock start %}
+      <!-- Modal body -->
+      <div class="modal-body modal-dialog-scrollable">
+            <table id='table_modal' class="table table-sm table-bordered">
+                <thead>
+                    <tr class="d-flex">
+                        <th class='col-1' scope="row">#</th>
+                        <th class='col-3' scope="row"><label id='model_header_1'>Code</label></th>
+                        <th class='col-5' scope="row"><label id='model_header_2'>Name</label></th>
+                        <th class='col-3' scope="row"><label id='model_header_3'>Note</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex">
+                        <td class='col-1'>1</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class='col-1'>2</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class='col-1'>3</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
