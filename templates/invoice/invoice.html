@@ -1,109 +1,187 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load static %}
 
-{% block title %}invoice{% endblock %}
+{% block title %}Invoice Forms{% endblock %}
 
 {% block script %}
-    <script src="{% static 'js/invoice.js' %}"></script>
+    <!--script src="{% static 'js/invoice.js' %}"></script-->
 {% endblock %}
 
-{% block start %}
-<div class="collapse navbar-collapse" id="mainNavBar">
-    <div class="col-md-6">
-      <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "invoice_forms" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Invoice Forms</a></li>
-        <li><a href="{% url "receipt_form" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Receipt Forms</a></li>
-        <li><a href="{% url "report" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Report</a></li>
-      </ul>
+{% block content %}
+
+    <div style="font-size:0;" class="bg-secondary">
+        <input type='image' id='btnNew' src="{% static 'images/newOn.gif' %}"  alt="newOn">
+        <input type='image' id='btnEdit' src="{% static 'images/editOn.gif' %}"  alt="editOn">
+        <input type='image' id='btnSave' src="{% static 'images/saveOn.gif' %}"  alt="saveOn">
+        <input type='image' id='btnDelete' src="{% static 'images/deleteOn.gif' %}"  alt="deleteOn">
+        <input type='image' id='btnPdf' src="{% static 'images/pdfOn.gif' %}"  alt="pdfOn">
+        <input type='image' id='btnPrint' src="{% static 'images/printOn.gif' %}"  alt="printOn">
+    </div>
+    <br />
+    <form id='form_invoice' action='/'>
+    {% csrf_token %}
+    <div class="container-fluid">
+        <div class='form-row align-items-center'>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Invoice No :</div>
+                    </div>
+                    <input type='text' id='txt_InvoiceNo' name='invoice_no' class='form-control' placeholder='Invoice No'>
+                </div>
+            </div>
+            <div class="col-0 col-lg-1"></div>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Invoice Date :</div>
+                    </div>
+                    <input type='text' id='txt_InvoiceDate' name='date' class='form-control' required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Check this checkbox to continue.</div>
+                    <button type='button' class="btn btn-default" id='btn_InvoiceDate'>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class='form-row'>
+            <div class="col-lg-4 col-md-8 col-12 col-auto">
+                <div class='input-group mb-2'>
+                    <div class='input-group-prepend'>
+                        <div class='input-group-text'>*Guest :</div>
+                    </div>
+                    <input type='text' id='txt_AccountID' name='account_id' class='form-control' placeholder='Guest Account ID' required>
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Check this checkbox to continue.</div>
+                    <button type='button' class="btn btn-default btn-sm search_customer_code">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                    <input type='text' id='txt_GuestName' name='guest_name' class='form-control' value='' readonly>
+                    <input type='hidden' id='txt_DueDate' name='due_date' />
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    Rooms Sold:
+    <div id='div_table' class="table-responsive-sm table-editable">
+        {% block main %}
+        <table id='table_main' class="table table-sm table-fixed table-bordered">
+            <thead>
+                <tr class="d-flex">
+                    <td class="col-1 table-active" align="center"><b>#</b></td>
+                    <th class="col-2 table-active" scope="row" >*Room Type</th>
+                    <!--th class="col-3 table-active" scope="row" >Name</th-->
+                    <th class="col-2 table-active" scope="row" >*Unit Price</th>
+                    <th class="col-1 table-active" scope="row" >*Quantity</th>
+                    <th class="col-2 table-active" scope="row" >Extended Price</th>
+                    <td class="col-1" align="center">
+                        <span class="table-add glyphicon glyphicon-plus"></span>
+                    </td>
+                </tr>
+                <tr class="d-flex hide">
+                    <td class="col-1 order_no table-active" scope="row" align="center"></td>
+                    <td class="col-2 project_code_1" scope="row" align="right">
+                        <span class='project_code'></span>
+                        <button type='button' class="btn btn-default btn-sm search_product_code">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </td>
+                    <td class="col-3 room_type table-warning" scope="row"></td>
+                    <td class="col-2 unit_price" scope="row" pattern="^[0-9]" align="right" contenteditable="true"></td>
+                    <td class="col-1 quantity" scope="row" pattern="^[0-9]" align="right" contenteditable="true"></td>
+                    <td class="col-2 extended_price table-warning" scope="row" align="right"></td>
+                    <td class="col-1"align="center">
+                        <span class="table-remove glyphicon glyphicon-remove"></span>
+                    </td>
+                </tr>                
+            </thead>
+            <tbody>
+
+            </tbody>
+            <tfoot>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>Total Price : </td>
+                    <td class="col-2 table-warning" scope="row" align="right"><label id='lbl_TotalPrice' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_TotalPrice' name='total' />
+                </tr>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>VAT : </td>
+                    <td class="col-2 table-warning" scope="row" align="right"><label id='lbl_VAT' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_VAT' name='vat' />
+                </tr>
+                <tr class="d-flex">
+                    <td class="col-9" scope="row" colspan='5' align="right" class='border-0'>Amount Due : </td>
+                    <td class="col-2 table-warning" scope="row" align="right"><label id='lbl_AmountDue' ></label></td>
+                    <td class="col-1"align="center"></td>
+                    <input type='hidden' id='txt_AmountDue' name='amount_due' />
+                </tr>
+            </toot>
+        </table>
+        {% endblock %}
+    </div>
+    </form>
+
+<!-- The Modal -->
+<div class="modal" id="modal_form">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <input type='hidden' id='txt_modal_param' />
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">List Of Value</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body modal-dialog-scrollable">
+            <table id='table_modal' class="table table-sm table-bordered">
+                <thead>
+                    <tr class="d-flex">
+                        <th class='col-1' scope="row">#</th>
+                        <th class='col-3' scope="row"><label id='model_header_1'>Room Type</label></th>
+                        <th class='col-5' scope="row"><label id='model_header_2'>Name</label></th>
+                        <th class='col-3' scope="row"><label id='model_header_3'>Note</label></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="d-flex">
+                        <td class='col-1'>1</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class='col-1'>2</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                    <tr class="d-flex">
+                        <td class='col-1'>3</td>
+                        <td class='col-3'><a class='a_click' href='#'></a></td>
+                        <td class='col-5'></td>
+                        <td class='col-3'></td>
+                        <td class='hide'></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                </tfoot>
+            </table>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
   </div>
 </div>
-
-<div class="container" style="font-size: 18px;">
-    <div class="row">
-        <form method="post" action="//submit.form" onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-            <div class="col-lg-6">
-                <div style="max-width: 400px;">
-            </div>
-            <div style="padding-bottom: 18px;font-size : 24px;">
-            <bold/><h1>Invoice Forms</h1></div>
-            <div style="display: flex; padding-bottom: 18px;max-width : 450px;">
-            <div style=" margin-left: 0; margin-right: 1%; width: 49%;">Invoice No.<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_2" name="data_2" style="max-width: 100%;" class="form-control" placeholder="8500"/>
-            </div>
-            <div class="col-lg-6">
-                <div style="padding-bottom: 12px;">Invoice date<span style="color: red;"> *</span><br/>
-                    <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control" placeholder="Fri Dec 11 2020"/>
-                </div>
-                <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
-            </div>
-            </div><div style="padding-bottom: 18px;">Guest Account ID<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_4" name="data_4" style="max-width : 450px;" class="form-control" placeholder="110220xxx"/>
-            </div>
-            <div style="padding-bottom: 18px;">Guest Name<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="Klao"/>
-            </div>
-            <div style="padding-bottom: 18px;">Booking ID<span style="color: red;"> *</span><br/>
-                <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="196201"/>
-            </div>
-        </form>
-    </div> 
-   
-            
-            <script type="text/javascript">
-            function validateForm() {
-            if (isEmpty(document.getElementById('data_2').value.trim())) {
-            alert('Invoice No is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_6').value.trim())) {
-            alert('Invoice Date is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_4').value.trim())) {
-            alert('Guest Account ID is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_5').value.trim())) {
-            alert('Guest Name is required!');
-            return false;
-            }
-            if (!validateEmail(document.getElementById('data_4').value.trim())) {
-            alert('Guest Account ID must be a valid account.');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_5').value.trim())) {
-            alert('Booking ID is required!');
-            return false;
-            }
-            return true;
-            }
-            function isEmpty(str) { return (str.length === 0 || !str.trim()); }
-            </script>
-
-            <table class='table table-bordered table-hover'>
-                <thead class="thead-dark">
-                <tr>
-                    <th>#</th>
-                    {% for name in column_name %}
-                    <th>{{ name }} </th>
-                    {% endfor %}
-                </tr>
-                </thead>
-                <tbody>
-            {% for lineitem in data %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ lineitem.invoice_no }}</td>
-                    <td>{{ lineitem.invoice_date|default:""}}</td>
-                    <td>{{ lineitem.account_id }}</td>
-                    <!--td>{{ lineitem.customer_name }}</td-->
-                    <td>{{ lineitem.due_date|default:""  }}</td>
-                    <td>{{ lineitem.total|intcomma }}</td>
-                    <td>{{ lineitem.vat|intcomma }}</td>
-                    <td>{{ lineitem.amount_due|intcomma }}</td>
-                <tr>
-            {% endfor %}
-                </tbody>
-</div>
-{% endblock start %}
+{% endblock %}
