@@ -1,0 +1,208 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Suite room{% endblock %}
+
+{% block script %}
+    <!-- <script src="{% static 'js/...' %}"></script> -->
+{% endblock %}
+
+{% block start %}
+<div class="collapse navbar-collapse" id="mainNavBar">
+  <div class="col-md-6">
+    <ul class="nav navbar-nav navbar-lelf">
+      <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+      <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+      <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="container" style="padding-bottom: 18px;font-size : 18px;">
+    <div class="row">
+      <div class="col-lg-8">
+        <bold /> <h2>The Suite Room - Lay View Hotel</h2>
+        <span class="heading">Room Rating</span>
+        <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+        <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+        <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+        <span class="fa fa-star checked" ></span>
+        <span class="fa fa-star checked" ></span>
+        <p>3 average based on xxx reviews.</p>
+        <br/>
+        <div class="col-lg-4">
+          <div class="row">
+            <img src="{% static './img/suite/suite.jpg' %}" width="250" height="150"/>
+            <br/>
+            <img src="{% static './img/suite/suite1.jpg' %}" width="250" height="150"/>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="row">
+            <img src="{% static './img/suite/suite2.jpg' %}" width="250" height="150"/>
+            <br/>
+            <img src="{% static './img/suite/suite3.jpg' %}" width="250" height="150"/>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+      <div class="row">
+        <div></div>
+        <div class="container">
+          <form method="post" action="//submit.form" onSubmit="return validateForm();" >
+            <br/>
+            <div style="padding-bottom: 18px;font-size : 18px;">
+            <div class="row">
+                <div class="col-md-3">
+                    <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_6" name="data_6" style="max-width : 300px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                    </div>
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
+                </div>
+                <div class="col-md-3">
+                    <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br/>
+                        <input type="text" id="data_7" name="data_7" style="max-width : 300px;" class="form-control" placeholder="Mon Dec 14 2020"/>
+                    </div>                             
+                    <script type="text/javascript">new Pikaday({ field: document.getElementById('data_7') });</script>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_8" name="data_8" style="max-width : 80px;" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br/>
+                        <input type="number" id="data_9" name="data_9" style="max-width : 80px;" class="form-control" required/>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                  <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
+                      <input type="number" id="data_10" name="data_10" style="max-width :80px;" class="form-control" required/>
+                  </div>
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Room Price<br/>
+                  <input type="text" id="data_6" name="data_11" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Extra Facilities Price<br/>
+                  <input type="text" id="data_6" name="data_12" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div style="padding-bottom: 12px;">Total Price<br/>
+                  <input type="text" id="data_6" name="data_13" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                </div>
+              </div>
+            </div>
+              <div>
+                <a href="{% url "total_payment" %}"><button font-size: 2rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
+                  <span class="glyphicon glyphicon-booking"></span> &nbsp;Book Now!!!</button></a>
+              </div>
+            </div>
+            </form>
+            <script type="text/javascript">
+            function validateForm() {
+            if (isEmpty(document.getElementById('data_6').value.trim())) {
+            alert('Check-In date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_7').value.trim())) {
+            alert('Check-Out date is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_8').value.trim())) {
+            alert('Number of adults is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_9').value.trim())) {
+            alert('Number of children is required!');
+            return false;
+            }
+            if (isEmpty(document.getElementById('data_10').value.trim())) {
+            alert('Number of room is required!');
+            return false;
+            }
+            return true;
+            }
+            function isEmpty(str) { return (str.length === 0 || !str.trim()); }
+            </script>
+        </div>
+      </div>
+      <div></div>
+      <br/>
+      <div class="row">
+        <div class="container">
+          <h3>Additional Facilities</h3>
+          <div class="row">
+            <div class="col-md-2">
+              <div style="display: inline;">
+                <input type="checkbox" id="extra_bed" name="extra_bed" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Extra bed
+                <input type="number" id="extra_bed1" name="extra_bed1" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control"/>
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" id="extra_bed2" name="extra_bed2" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="150 baht" readonly/>
+            </div>
+          </div>
+          <div></div>
+          <div class="row">
+            <div class="col-md-2">
+              <div style="display: inline;">
+                <input type="checkbox" id="dinner" name="dinner" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Dinner 
+              </div>
+            </div>
+            <div class="col-md-2">
+              <input type="text" id="dinner1" name="dinner1" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="200 baht" readonly/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <bold /><h3>Room Information</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <dl>
+          <h4><dt><span class="fa fa-bed"></span> Room Features : </dt></h4>
+          <dd>- Individual climate control</dd>
+          <dd>- Tea and coffee making facilities</dd>
+          <dd>- 220V/240V electrical sockets</dd>
+        </dl>
+      </div>
+      <div class="col-md-4">
+        <dl>
+          <h4><dt><span class="fa fa-gamepad "></span> Entertainment :</dt></h4>
+          <dd>- LCD TV </dd>
+          <dd>- International calls by operator</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <dl>
+          <h4><dt><span class="fa fa-bath"></span> Bathroom Facilities :</dt></h4>
+          <dd>- Shower </dd>
+          <dd>- Hair-dryer</dd>
+        </dl>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <dl>
+            <h4><dt><span class="fa fa-rss"></span> Communication & Technology :</dt></h4>
+            <dd>- Free WiFi </dd>
+            <dd>- International calls by operator</dd>
+          </dl>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock start %}

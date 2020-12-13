@@ -71,38 +71,56 @@ def Searchnow(request):
     return render(request, 'index.html')
 
 def CheckStatus(request):
-    if request.method == 'POST':
-        check_in = request.POST.get('check_in')
-        check_out = request.POST.get('check_out')
-        data = {'check_in' : check_in, 'check_out':check_out}
-        
-    return render(request, 'status/check.html')
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            check_in = request.POST.get('check_in')
+            check_out = request.POST.get('check_out')
+            data = {'check_in' : check_in, 'check_out':check_out}
+            
+        return render(request, 'status/check.html')
+    else:
+        return index(request)
 
 def SingleRoomDetail(request):
-
-    return render(request, 'room/single.html')
+    if request.user.is_authenticated:
+        return render(request, 'room/single.html')
+    else: 
+        return index(request)
 
 def DoubleRoomDetail(request):
-
-    return render(request, 'room/double.html')
+    if request.user.is_authenticated:
+        return render(request, 'room/double.html')
+    else: 
+        return index(request)
 
 def SuiteRoomDetail(request):
-    
-    return render(request, 'room/suite.html')
+    if request.user.is_authenticated:
+        return render(request, 'room/suite.html')
+    else: 
+        return index(request)
 
 def DeluxeRoomDetail(request):
-    
-    return render(request, 'room/deluxe.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'room/deluxe.html')
+    else: 
+        return index(request)
 def PremierRoomDetail(request):
-    
-    return render(request, 'room/premier.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'room/premier.html')
+    else: 
+        return index(request)
 def HotelReservation(request):
-    return render(request, 'reserve/reserve.html')
-
+    if request.user.is_authenticated:
+        return render(request, 'reserve/reserve.html')
+    else: 
+        return index(request)
 def TotalPayment(request):
-    return render(request,'bill/totalpayment.html')
-
+    if request.user.is_authenticated:
+        return render(request,'bill/totalpayment.html')
+    else: 
+        return index(request)
 def PaymentForm(request):
-    return render(request,'bill/payform.html')
+    if request.user.is_authenticated:
+        return render(request,'bill/payform.html')
+    else: 
+        return index(request)
