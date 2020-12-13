@@ -55,15 +55,15 @@ class ReservationCreate(View):
         request.POST['no_adult'] = reFormatNumber(request.POST['no_adult'])
         request.POST['no_child'] = reFormatNumber(request.POST['no_child'])
         request.POST['no_room'] = reFormatNumber(request.POST['no_room'])
-        request.POST['no_extra_bed'] = reFormatNumber(request.POST['no_extra_bed'])
-
-        form = ReservationForm(request.POST)
+        request.POST['account_id'] = request.user.id
         
+        form = ReservationForm(request.POST)
         if form.is_valid():
             reservation = form.save()
 
             data['reservation'] = model_to_dict(reservation)
         else:
+            print(form.errors)
             data['error'] = 'form not valid!'
 
         response = JsonResponse(data)
@@ -83,7 +83,7 @@ class ReservationUpdate(View):
         request.POST['no_adult'] = reFormatNumber(request.POST['no_adult'])
         request.POST['no_child'] = reFormatNumber(request.POST['no_child'])
         request.POST['no_room'] = reFormatNumber(request.POST['no_room'])
-        request.POST['no_extra_bed'] = reFormatNumber(request.POST['no_extra_bed'])
+        
 
         form = ReservationForm(instance=reservation, data=request.POST)
         if form.is_valid():
@@ -98,7 +98,7 @@ class ReservationUpdate(View):
         return response
 
 @method_decorator(csrf_exempt, name='dispatch')
-class InvoiceDelete(View):
+class ReservationDelete(View):
     def post(self, request, booking_id):
         data = dict()
         reservation = Reservation.objects.get(pk=booking_id)
@@ -117,3 +117,34 @@ def dictfetchall(cursor):
         dict(zip(columns, row))
         for row in cursor.fetchall()
     ]
+
+
+def reFormatDateMMDDYYYY(ddmmyyyy):
+    if (ddmmyyyy[4:7] == "Jan"):
+        return "01/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Feb"):
+        return "02/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Mar"):
+        return "03/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Apr"):
+        return "04/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "May"):
+        return "05/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Jun"):
+        return "06/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Jul"):
+        return "07/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Aug"):
+        return "08/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Sep"):
+        return "09/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Oct"):
+        return "10/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Nov"):
+        return "11/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+    elif (ddmmyyyy[4:7] == "Dec"):
+        return "12/" + ddmmyyyy[8:10] +'/'+ ddmmyyyy[11:]
+def reFormatNumber(str):
+        if (str == ''):
+            return ''
+        return str.replace(",", "")

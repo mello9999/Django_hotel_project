@@ -1,17 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
-class Room(models.Model):
-    room_id = models.IntegerField(primary_key=True)
-    room_name = models.CharField(max_length=100, null=True)
-    units = models.FloatField(null=True)
-    class Meta:
-        db_table = "room"
-        managed = True
-    def __str__(self):
-        return self.room_id
-
-
+from roomtype.models import RoomType
 class Reservation(models.Model):
     booking_id = models.IntegerField(primary_key=True)
     check_in = models.DateField(null=True, blank=True)
@@ -19,9 +8,9 @@ class Reservation(models.Model):
     no_adult = models.IntegerField()
     no_child = models.IntegerField()
     no_room = models.IntegerField()
-    extra_bed = models.IntegerField()
-    account_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='id')
-    room_id = models.ForeignKey(Room, on_delete=models.CASCADE, db_column='room_id')
+    extra_bed = models.BooleanField()
+    account_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='account_id')
+    room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, db_column='room_type')
     class Meta:
         db_table = "reservation"
         managed = True

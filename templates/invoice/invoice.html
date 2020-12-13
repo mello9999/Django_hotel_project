@@ -1,11 +1,10 @@
-{% extends "index.html" %}
-
+{% extends 'base.html' %}
 {% load static %}
 
 {% block title %}invoice{% endblock %}
 
 {% block script %}
-    <!-- <script src="{% static 'js/...' %}"></script> -->
+    <script src="{% static 'js/invoice.js' %}"></script>
 {% endblock %}
 
 {% block start %}

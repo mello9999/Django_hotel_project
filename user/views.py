@@ -56,7 +56,7 @@ def Login(request):
         if user is not None:
             form = login(request,user)
             messages.success(request, f' welcome {username} !!')
-            return redirect('check_status')
+            return redirect('/')
         else:
             messages.info(request, f'account done not exit plz sign in')
     form = AuthenticationForm()
@@ -124,3 +124,6 @@ def PaymentForm(request):
         return render(request,'bill/payform.html')
     else: 
         return index(request)
+
+def Invoice(request):
+    return render(request,'invoice/invoice.html')
