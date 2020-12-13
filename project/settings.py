@@ -109,10 +109,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hotel',
-        'USER': 'postgres',
-        'PASSWORD': 'kao2542',     
-        'HOST': 'localhost',
-        'PORT': '',
+        'USER': 'natchapolpatamawisut@dd-dinner-dog',
+        'PASSWORD': 'Bank_1333',     
+        'HOST': 'dd-dinner-dog.postgres.database.azure.com',
+        'PORT': '5432',
     }
 }
 
