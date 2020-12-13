@@ -48,6 +48,8 @@
                 <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="196201"/>
             </div>
         </form>
+    </div> 
+   
             
             <script type="text/javascript">
             function validateForm() {
@@ -80,30 +82,29 @@
             function isEmpty(str) { return (str.length === 0 || !str.trim()); }
             </script>
 
-    <table class='table table-bordered table-hover'>
-    <thead class="thead-dark">
-    <tr>
-        <th>#</th>
-        {% for name in column_name %}
-        <th>{{ name }} </th>
-        {% endfor %}
-    </tr>
-    </thead>
-    <tbody>
-{% for lineitem in data %}
-    <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ lineitem.invoice_no }}</td>
-        <td>{{ lineitem.invoice_date|default:""}}</td>
-        <td>{{ lineitem.account_id }}</td>
-        <!--td>{{ lineitem.customer_name }}</td-->
-        <td>{{ lineitem.due_date|default:""  }}</td>
-        <td>{{ lineitem.total|intcomma }}</td>
-        <td>{{ lineitem.vat|intcomma }}</td>
-        <td>{{ lineitem.amount_due|intcomma }}</td>
-    <tr>
-{% endfor %}
-    </tbody>
+            <table class='table table-bordered table-hover'>
+                <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    {% for name in column_name %}
+                    <th>{{ name }} </th>
+                    {% endfor %}
+                </tr>
+                </thead>
+                <tbody>
+            {% for lineitem in data %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ lineitem.invoice_no }}</td>
+                    <td>{{ lineitem.invoice_date|default:""}}</td>
+                    <td>{{ lineitem.account_id }}</td>
+                    <!--td>{{ lineitem.customer_name }}</td-->
+                    <td>{{ lineitem.due_date|default:""  }}</td>
+                    <td>{{ lineitem.total|intcomma }}</td>
+                    <td>{{ lineitem.vat|intcomma }}</td>
+                    <td>{{ lineitem.amount_due|intcomma }}</td>
+                <tr>
+            {% endfor %}
+                </tbody>
 </div>
-
 {% endblock start %}

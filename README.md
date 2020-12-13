@@ -39,10 +39,12 @@ here <b>env/</b> folder contains all dependencies
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'hotel',
-        'USER': 'postgres',
-        'PASSWORD': '*******',    //ใส่ password pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database 
+        'USER': 'natchapolpatamawisut@dd-dinner-dog',
+        'PASSWORD': '********* ',     //ใส่ password pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database 
+        'HOST': 'dd-dinner-dog.postgres.database.azure.com', 
+        'PORT': '5432',
         }
-      }
+    }
     </pre>
   </li>
   <li>

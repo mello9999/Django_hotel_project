@@ -19,7 +19,7 @@ class Reservation(models.Model):
     no_adult = models.IntegerField()
     no_child = models.IntegerField()
     no_room = models.IntegerField()
-    no_extra_bed = models.IntegerField()
+    extra_bed = models.IntegerField()
     account_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='id')
     room_id = models.ForeignKey(Room, on_delete=models.CASCADE, db_column='room_id')
     class Meta:
