@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from user import views as user_view
+from roomtype import views as roomtype_view
 from django.contrib.auth import views as auth
 
 from .router import router
@@ -47,5 +48,7 @@ urlpatterns = [
     path('reserve/',user_view.HotelReservation,name="reserve"),
     path('total_payment/',user_view.TotalPayment,name="total_payment"),
     path('pay_form/',user_view.PaymentForm,name="pay_form"),
+
+    path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
 
 ]
