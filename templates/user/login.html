@@ -23,9 +23,22 @@
                   {% csrf_token %}
                   <center><img src="{% static './img/logo1.png' %}" width="320" height="100"/> </center>
                   <br/>
-                  <div class="container">
-                    <h4>Check-in : </h4> <input id="check_in" type="text" name="check_in" width="300" />
-                    <h4>Check-out : </h4> <input id="check_out" type="text"  name="check_out" width="300" />
+                  <br/>
+                  <div class="row">
+                    <h4>Room Type<span style="color: red;"> *</span> : </h4>
+                    <select id="inputState" class="form-control" style="max-width :600px;">
+                      <option selected>Choose...</option>
+                      <option>Single Room</option>
+                      <option>Double Room</option>
+                      <option>Suite Room</option>
+                      <option>Deluxe Room</option>
+                      <option>Premier Room</option>
+                    </select>
+                  </div>
+                  <br/>
+                  <div class="row">
+                    <h4>Check-in : </h4> <input id="check_in" type="text" name="check_in" width="420" />
+                    <h4>Check-out : </h4> <input id="check_out" type="text"  name="check_out" width="420" />
                   </div>
                   <br/>
                   <br/>
@@ -33,6 +46,8 @@
                     <button font-size: 2rem; padding:1%; class="btn btn-outline-dark" type="submit" name="search_now">
                     <span class="glyphicon glyphicon-search"></span> &nbsp; Search now</button>
                   </center>
+                  <br/>
+                  <br/>
                   <br/>
                   <br/>
                   <br/>

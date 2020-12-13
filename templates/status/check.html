@@ -1,0 +1,217 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}Check Status{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="{% static 'js/check.js' %}"></script> 
+{% endblock %}
+
+{% block start %}
+<div class="collapse navbar-collapse" id="mainNavBar">
+  <div class="col-md-6">
+    <ul class="nav navbar-nav navbar-lelf">
+      <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+      <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
+      <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
+    </ul>
+  </div>
+</div>
+</div>
+
+
+<div class = "container" style="font-size: 20px;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-shadow-full">
+        <br/>
+        <h1>Lay View Hotel</h1>
+        <div class="row">
+          <div class="col-md-3">
+            <h4>Room Type<span style="color: red;"> *</span> : </h4>
+            <select id="inputState" class="form-control" style="max-width :600px;">
+              <option selected>Choose...</option>
+              <option>Single Room</option>
+              <option>Double Room</option>
+              <option>Suite Room</option>
+              <option>Deluxe Room</option>
+              <option>Premier Room</option>
+            </select>
+          </div>
+          <div class="col-md-4">
+            <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" />
+            <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" />
+          </div>
+          <br/>
+          <div class="col-md-4">
+            <button font-size: 2rem; padding:10%; class="btn btn-outline-dark" type="submit" name="search_now" >
+              <span class="glyphicon glyphicon-search"></span> &nbsp; Search now
+            </button>
+          </div>
+          <br/> 
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+        </div>
+        <script>
+          var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+          $('#txt_singlestatus').val("abc")
+          $('#check_in').datepicker({
+              minDate: today,
+              maxDate: function () {
+                  return $('#check_out').val();
+              }
+          });
+          $('#check_out').datepicker({
+              minDate: function () {
+                return $('#check_in').val();
+              }
+          });
+        </script>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <table class="table">
+      <tr>
+        <th>Room Type</th>
+        <th>Room Status</th>
+        <th>Available Rooms</th>
+        <th>Rating</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+      <tbody>
+        <tr>
+          <td>
+            <img src="{% static 'img/single/single4.jpg' %}" width="310" height="300"/>
+            <h4>Single Room</h4>
+          </td>
+          <td data-th="Room Status">
+            <input id="txt_singlestatus" type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" value="" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input id="txt_singleavailable" type="text" class="form-control text-center" style="max-width:150px;" value="" readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+          </td>
+          <td id="txt_singleprice"></td>
+          <td>
+            <a href="{% url "single" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
+            <span class="glyphicon glyphicon-plus"></span> &nbsp; Read more</button></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'img/double/double4.jpg' %}" width="310" height="300"/>
+            <h4>Double Room</h4>
+          </td>
+          <td data-th="Room Status">
+            <input id="txt_doublestatus" type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input id="txt_doubleavailable" type="text" class="form-control text-center" style="max-width:150px;"  readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
+          <td id="txt_doubleprice"></td>
+          <td>
+            <a href="{% url "double" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
+            <span class="glyphicon glyphicon-plus"></span> &nbsp; Read more</button></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'img/suite/suite4.jpg' %}" width="310" height="300"/>
+            <h4>Suite Room</h4>
+          </td>
+          <td data-th="Room Status">
+            <input id="txt_suitestatus" type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input id="txt_suiteavailable" type="text" class="form-control text-center" style="max-width:150px;"  readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
+          <td id="txt_suiteprice"></td>
+          <td>
+            <a href="{% url "suite" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
+              <span class="glyphicon glyphicon-plus"></span> &nbsp; Read more</button></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'img/deluxe/deluxe4.jpg' %}" width="310" height="300"/>
+            <h4>Deluxe Room</h4>
+          </td>
+          <td data-th="Room Status">
+            <input id="txt_deluxestatus" type="text" class="form-control text-center" style="max-width:150px;"  readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input id="txt_deluxeavailable" type="text" class="form-control text-center" style="max-width:150px;"  readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" ></span>
+          </td>
+          <td id="txt_deluxeprice"></td>
+          <td>
+            <a href="{% url "deluxe" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
+              <span class="glyphicon glyphicon-plus"></span> &nbsp; Read more</button></a>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <img src="{% static 'img/premier/premier4.jpg' %}" width="310" height="300"/>
+            <h4>Premier Room</h4>
+          </td>
+          <td data-th="Room Status">
+            <input id="txt_premierstatus" type="text" class="form-control text-center" style="max-width:150px;" placeholder="Available / Full" readonly>
+          </td>
+          <td data-th="Available Rooms">
+            <input id="txt_premieravailable" type="text" class="form-control text-center" style="max-width:150px;"  readonly>
+          </td>
+          <td>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+            <span class="fa fa-star checked" style="color: rgb(255, 235, 80);"></span>
+          </td>
+          <td id="txt_premierprice"></td>
+          <td>
+            <a href="{% url "premier" %}"><button font-size: 2rem; padding:1%; class="btn btn-warning" type="submit" name="booking">
+              <span class="glyphicon glyphicon-plus"></span> &nbsp; Read more</button></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <script src="{% static 'js/check.js' %}"></script> 
+  </div>
+
+
+
+{% endblock start %}
