@@ -27,58 +27,287 @@
         </center>
     </div>
     <br/>
-    <div class="row" style="font-size:18px;">
-        <div class="container">
-            <table id="cart" class="table table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th style="width:50%">Room</th>
-                        <th style="width:10%">Price</th>
-                        <th style="width:8%">Quantity</th>
-                        <th style="width:22%" class="text-center">Subtotal</th>
-                        <th style="width:10%"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td data-th="Room">
-                            <div class="row">
-                                <div class="col-sm-2 hidden-xs"><img src="{% static './img/single/single4.jpg' %}"  class="img-responsive"/></div>
-                                <div class="col-sm-10">
-                                    <h4 class="nomargin">Single room</h4>
+    <div class="card" style="max-width: 500rem;">
+        <div class="row" style="font-size:22px;">
+            <div class="container" style="max-width:1000px;">
+                <table id="cart" class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th style="width:30%">Room</th>
+                            <th style="width:10%">Price</th>
+                            <th style="width:8%">Quantity</th>
+                            <th style="width:10%" class="text-center">Subtotal</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 20px;">
+                        <tr>
+                            <td data-th="Room">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="{% static './img/single/single4.jpg' %}"  class="img-responsive"/></div>
+                                    <div class="col-sm-8">
+                                        <h4 class="nomargin">Single room</h4>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td data-th="Price">฿1500</td>
-                        <td data-th="Quantity">
-                            <input type="number" class="form-control text-center" value="1">
-                        </td>
-                        <td data-th="Subtotal" class="text-center">฿1500</td>
-                        <td class="actions" data-th="">
-                            <button id="add_cart" class="btn btn-info btn-sm"><i class="fa fa-plus"></i></button>
-                            <button id="delete_cart" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr class="visible-xs">
-                        <td class="text-center"><strong>Total</strong></td>
-                    </tr>
-                    <tr>
-                        <td><a href="{% url "check_status" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Booking</a></td>
-                        <td colspan="{% url "check_status" %}" class="hidden-xs"></td>
-                        <td class="hidden-xs text-center"><strong>Total
-                            <td data-th="Subtotal">
-                                <input type="text" class="form-control text-center" placeholder="total price" readonly>
                             </td>
-                        </strong></td>
-                        <td><a href="{% url "pay_form" %}" class="btn btn-success btn-block">Confirm Booking <i class="fa fa-angle-right"></i></a></td>
-                    </tr>
-                </tfoot>
-            </table>
+                            <td data-th="Price">฿1500</td>
+                            <td data-th="Quantity">
+                                <input type="number" class="form-control text-center" value="1">
+                            </td>
+                            <td data-th="Subtotal" class="text-center">฿1500</td>
+                            <td class="actions" data-th="">
+                                <button id="add_cart" class="btn btn-info btn-sm"><i class="fa fa-plus"></i></button>
+                                <button id="delete_cart" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="visible-xs">
+                            <td class="text-center"><strong>Total</strong></td>
+                        </tr>
+                        <tr>
+                            <td><a href="{% url "check_status" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Booking</a></td>
+                            <td colspan="{% url "check_status" %}" class="hidden-xs"></td>
+                            <td class="hidden-xs text-center"><strong>Total
+                                <td data-th="Subtotal">
+                                    <input type="text" class="form-control text-center" placeholder="total price" readonly>
+                                </td>
+                            </strong></td>
+                            <td><a href="{% url "pay_form" %}" class="btn btn-success btn-block">Confirm Booking <i class="fa fa-angle-right"></i></a></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <div class="col-lg-12" style="font-size: 18px;">
+        <div class="card">
+            <div class="row">
+                <h1>Pay Now</h1>
+                <br/>
+                <div class="col-lg-3 radio-group">
+                    <div class="row d-flex px-2 radio"> <img class="pay" src="https://i.imgur.com/WIAP9Ku.jpg">
+                        <p class="my-auto">Credit Card</p>
+                    </div>
+                    <div class="row d-flex px-2 radio gray"> <img class="pay" src="https://i.imgur.com/OdxcctP.jpg">
+                        <p class="my-auto">Debit Card</p>
+                    </div>
+                    <div class="row d-flex px-2 radio gray mb-2"> <img class="pay" src="{% static './img/dollar.png' %}">
+                        <p class="my-auto">Cash</p>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="row px-2">
+                        <div class="form-group col-md-6"> <label class="form-control-label">Name on Card</label> <input type="text" id="cname" name="cname" placeholder="Natchapooo Pataa"> </div>
+                        <div class="form-group col-md-6"> <label class="form-control-label">Card Number</label> <input type="text" id="cnum" name="cnum" placeholder="1111 2222 3333 4444"> </div>
+                    </div>
+                    <div class="row px-2">
+                        <div class="form-group col-md-6"> <label class="form-control-label">Expiration Date</label> <input type="text" id="exp" name="exp" placeholder="MM/YYYY"> </div>
+                        <div class="form-group col-md-6"> <label class="form-control-label">CVV</label> <input type="text" id="cvv" name="cvv" placeholder="***"> </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-2" style="font-size: 19px;">
+                    <div class="row d-flex justify-content-between px-4">
+                        <p class="mb-1 text-left">Subtotal</p>
+                        <h6 class="mb-1 text-right" style="font-size: 16px;"><input type="text" class="form-control text-right" style="max-width:400px;" placeholder="฿1500" readonly></h6>
+                    </div>
+                    <div class="row d-flex justify-content-between px-4">
+                        <p class="mb-1 text-left">TAX 7%</p>
+                        <h6 class="mb-1 text-right" style="font-size: 16px;"> <input type="text" class="form-control text-right" style="max-width:400px;" placeholder="฿120" readonly> </h6>
+                    </div>
+                    <div class="row d-flex justify-content-between px-4" id="tax">
+                        <p class="mb-1 text-left">Total (tax included)</p>
+                        <h6 class="mb-1 text-right" style="font-size: 16px;"> <input type="text" class="form-control text-right" style="max-width:400px;" placeholder="฿1620" readonly></h6>
+                    </div> <button class="btn-block btn-blue" style="max-width: 500px;"> <span> <span id="checkout">Checkout</span> <span id="check-amt">฿1620</span> </span> </button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
+<script>
+    $(document).ready(function(){
 
+    $('.radio-group .radio').click(function(){
+    $('.radio').addClass('gray');
+    $(this).removeClass('gray');
+    });
+
+    $('.plus-minus .plus').click(function(){
+    var count = $(this).parent().prev().text();
+    $(this).parent().prev().html(Number(count) + 1);
+    });
+
+    $('.plus-minus .minus').click(function(){
+    var count = $(this).parent().prev().text();
+    $(this).parent().prev().html(Number(count) - 1);
+    });
+
+    });
+</script>
+
+
+<style>
+    body {
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: #fff;
+    background-repeat: no-repeat
+    }
+    
+    .plus-minus {
+        position: relative
+    }
+    
+    .plus {
+        position: absolute;
+        top: -4px;
+        left: 2px;
+        cursor: pointer
+    }
+    
+    .minus {
+        position: absolute;
+        top: 8px;
+        left: 5px;
+        cursor: pointer
+    }
+    
+    .vsm-text:hover {
+        color: #FF5252
+    }
+    
+    .book,
+    .book-img {
+        width: 120px;
+        height: 180px;
+        border-radius: 5px
+    }
+    
+    .book {
+        margin: 20px 15px 5px 15px
+    }
+    
+    .border-top {
+        border-top: 1px solid #EEEEEE !important;
+        margin-top: 20px;
+        padding-top: 15px
+    }
+    
+    .card {
+        margin: 40px 0px;
+        padding: 40px 50px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
+    }
+    
+    input,
+    textarea {
+        background-color: #d2ffdf;
+        padding: 8px 15px 8px 15px;
+        width: 100%;
+        border-radius: 5px !important;
+        box-sizing: border-box;
+        border: 1px solid #d2ffdf;
+        font-size: 15px !important;
+        color: #000 !important;
+        font-weight: 300
+    }
+    
+    input:focus,
+    textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #9FA8DA;
+        outline-width: 0;
+        font-weight: 400
+    }
+    
+    button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0
+    }
+    
+    .pay {
+        width: 80px;
+        height: 40px;
+        border-radius: 5px;
+        border: 1px solid #673AB7;
+        margin: 10px 20px 10px 0px;
+        cursor: pointer;
+        box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
+    }
+    
+    .gray {
+        -webkit-filter: grayscale(100%);
+        -moz-filter: grayscale(100%);
+        -o-filter: grayscale(100%);
+        -ms-filter: grayscale(100%);
+        filter: grayscale(100%);
+        color: #E0E0E0
+    }
+    
+    .gray .pay {
+        box-shadow: none
+    }
+    
+    #tax {
+        border-top: 1px lightgray solid;
+        margin-top: 10px;
+        padding-top: 10px
+    }
+    
+    .btn-blue {
+        border: none;
+        border-radius: 10px;
+        background-color: #089900;
+        color: #fff;
+        padding: 8px 15px;
+        margin: 20px 0px;
+        cursor: pointer
+    }
+    
+    .btn-blue:hover {
+        background-color: #008800;
+        color: #fff
+    }
+    
+    #checkout {
+        float: left
+    }
+    
+    #check-amt {
+        float: right
+    }
+    
+    @media screen and (max-width: 768px) {
+    
+        .book,
+        .book-img {
+            width: 100px;
+            height: 150px
+        }
+    
+        .card {
+            padding-left: 15px;
+            padding-right: 15px
+        }
+    
+        .mob-text {
+            font-size: 13px
+        }
+    
+        .pad-left {
+            padding-left: 20px
+        }
+    }
+</style>
+    
 {% endblock start %}
