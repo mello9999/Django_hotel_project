@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from user import views as user_view
+from reservation import views as reserve_view
 from roomtype import views as roomtype_view
 from django.contrib.auth import views as auth
 
@@ -38,17 +39,24 @@ urlpatterns = [
     path('register/',user_view.register,name='register'),
     path('search_now/',user_view.Searchnow,name='search_now'),
     
-    path('check_status/',user_view.CheckStatus,name="check_status"),
     path('single_room/',user_view.SingleRoomDetail,name="single"),
     path('double_room/',user_view.DoubleRoomDetail,name="double"),
     path('suite_room/',user_view.SuiteRoomDetail,name="suite"),
     path('deluxe_room/',user_view.DeluxeRoomDetail,name="deluxe"),
     path('premier_room/',user_view.PremierRoomDetail,name="premier"),
 
-    path('reserve/',user_view.HotelReservation,name="reserve"),
+    path('roomtype/update',reserve_view.ReservationUpdate.as_view(),name="roomtype_update"),
+    
+    path('reserve',user_view.HotelReservation,name="reserve"),
+    path('reserve/create',reserve_view.ReservationCreate.as_view(),name="reserve_create"),
+    path('reserve/update',reserve_view.ReservationUpdate.as_view(),name="reserve_update"),
+    path('reserve/delete',reserve_view.ReservationDelete.as_view(),name="reserve_delete"),
+    path('reserve/list',reserve_view.ReservationList.as_view(),name="reserve_list"),
+
     path('total_payment/',user_view.TotalPayment,name="total_payment"),
     path('pay_form/',user_view.PaymentForm,name="pay_form"),
 
+    path('roomtype/update/<pk>',roomtype_view.RoomTypeUpdate.as_view(),name="roomtype_update"),
     path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
 
 ]

@@ -5,14 +5,14 @@
 {% block title %}Suite room{% endblock %}
 
 {% block script %}
-    <!-- <script src="{% static 'js/...' %}"></script> -->
+<script src="{% static 'js/single.js' %}"></script> 
 {% endblock %}
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
   <div class="col-md-6">
     <ul class="nav navbar-nav navbar-lelf">
-      <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+      <li><a href="{% url "index" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
       <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
       <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
     </ul>
@@ -51,19 +51,19 @@
       <div class="row">
         <div></div>
         <div class="container">
-          <form method="post" action="//submit.form" onSubmit="return validateForm();" >
+          <form onSubmit="return validateForm();">
             <br/>
             <div style="padding-bottom: 18px;font-size : 18px;">
             <div class="row">
                 <div class="col-md-3">
                     <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br/>
-                        <input type="text" id="data_6" name="data_6" style="max-width : 300px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                        <input type="text" id="data_6" name="check_in" style="max-width : 300px;" class="form-control" placeholder="Fri Dec 11 2020"/>
                     </div>
                     <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
                 </div>
                 <div class="col-md-3">
                     <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br/>
-                        <input type="text" id="data_7" name="data_7" style="max-width : 300px;" class="form-control" placeholder="Mon Dec 14 2020"/>
+                        <input type="text" id="data_7" name="check_out" style="max-width : 300px;" class="form-control" placeholder="Mon Dec 14 2020"/>
                     </div>                             
                     <script type="text/javascript">new Pikaday({ field: document.getElementById('data_7') });</script>
                 </div>
@@ -71,34 +71,34 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_8" name="data_8" style="max-width : 80px;" class="form-control" required/>
+                        <input type="number" id="data_8" name="no_adult" min="0" style="max-width : 80px;" class="form-control" value="0" required/>
                     </div>
                 </div>
                 <div class="col-sm-2">
                     <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_9" name="data_9" style="max-width : 80px;" class="form-control" required/>
+                        <input type="number" id="data_9" name="no_child" min="0" style="max-width : 80px;" class="form-control" value="0" required/>
                     </div>
                 </div>
                 <div class="col-sm-2">
                   <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
-                      <input type="number" id="data_10" name="data_10" style="max-width :80px;" class="form-control" required/>
+                      <input id="txt_no_room" type="number"  name="no_room" min="0" style="max-width :80px;" class="form-control" value="0" required/>
                   </div>
                 </div>
             </div>
             <div class="row">
               <div class="col-md-2">
                 <div style="padding-bottom: 12px;">Room Price<br/>
-                  <input type="text" id="data_6" name="data_11" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                  <input id="txt_roomprice" type="text" name="room_price" style="max-width :100px; font-size: 16px;" class="form-control" value="0" placeholder="" readonly/>
                 </div>
               </div>
               <div class="col-md-2">
                 <div style="padding-bottom: 12px;">Extra Facilities Price<br/>
-                  <input type="text" id="data_6" name="data_12" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                  <input id="txt_exprice" type="text" name="data_12" style="max-width :100px; font-size: 16px;" class="form-control" value="0" placeholder="" readonly/>
                 </div>
               </div>
               <div class="col-md-2">
                 <div style="padding-bottom: 12px;">Total Price<br/>
-                  <input type="text" id="data_6" name="data_13" style="max-width :100px; font-size: 16px;" class="form-control" placeholder=" XXXX ฿ " readonly/>
+                  <input id="txt_totalprice" type="text"  name="data_13" style="max-width :100px; font-size: 16px;" class="form-control" value="0" placeholder="" readonly/>
                 </div>
               </div>
             </div>
@@ -107,8 +107,25 @@
                   <span class="glyphicon glyphicon-booking"></span> &nbsp;Book Now!!!</button></a>
               </div>
             </div>
+            <br/>
+            <div class="row">
+              <div class="container">
+                <h3>Additional Facilities</h3>
+                <div class="row">
+                  <div class="col-md-2">
+                    <div style="display: inline;">
+                      <input type="checkbox" id="exprice" value="false" name="extra_bed" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Extra bed
+                    </div>
+                  </div>
+                  <div class="col-md-2">
+                    <input type="text" id="txt_realexprice" name="extra_bed2" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="price" readonly/>
+                  </div>
+                </div>
+              </div>
+            </div>
             </form>
             <script type="text/javascript">
+            
             function validateForm() {
             if (isEmpty(document.getElementById('data_6').value.trim())) {
             alert('Check-In date is required!');
@@ -126,35 +143,95 @@
             alert('Number of children is required!');
             return false;
             }
-            if (isEmpty(document.getElementById('data_10').value.trim())) {
+            if (isEmpty(document.getElementById('txt_no_room').value.trim())) {
             alert('Number of room is required!');
             return false;
             }
-            return true;
+            if ($('#txt_no_room').val()<1){
+              alert('Number of room is required!');
+              return false;
+            }
+            console.log($('#extra_bed').is(':checked'))
+            let formdata = {
+              'check_in' : $('#data_6').val(),
+              'check_out' : $('#data_7').val(),
+              'no_adult' : $('#data_8').val(),
+              'no_child' : $('#data_9').val(),
+              'no_room' : $('#txt_no_room').val(),
+              'extra_bed' : $('#exprice').is(':checked'),
+              'room_type' : 'suite'
+            }
+            $.ajax({
+              url:  '/roomtype/detail/' + 'suite',
+              type:  'get',
+              dataType:  'json',
+              success: function  (data) {
+                
+               if (data.roomtype.available === 0) {
+                 alert('Room Full')
+                 return false;
+               }
+              
+            $.ajax({
+              url:  '/reserve/create',
+              type:  'post',
+              dataType:  'json',
+              data:formdata,
+              success: function  (data) {
+                console.log(data)
+                
+                $.ajax({
+                  url:  '/roomtype/detail/' + 'suite',
+                  type:  'get',
+                  dataType:  'json',
+                  success: function  (data) {
+                    
+                      data.roomtype.available = parseInt(data.roomtype.available) - 1;
+                      
+                      $.ajax({
+                        url:  '/roomtype/update/'+'suite',
+                        type:  'post',
+                        dataType:  'json',
+                        data:data,
+                        success: function  (data) {
+                        },
+                          error: function (xhr, status, error) {
+                              console.log(error)
+                              alert('Bookings Failed1!!');
+                          }
+                  })},
+                  error: function (xhr, status, error) {
+                      console.log(error)
+                      alert('Bookings Failed2!!');
+                  }}
+              );
+              alert('Bookings Success!!');
+                window.location.href = '/';
+              },error: function (xhr, status, error) {
+                console.log(error)
+                alert('Bookings Failed4!!');
+            }
+            });        
+          },
+          error: function (xhr, status, error) {
+              console.log(error)
+              alert('Bookings Failed2!!');
+          }}
+      );
+            return false;
             }
             function isEmpty(str) { return (str.length === 0 || !str.trim()); }
             </script>
         </div>
       </div>
-      <div></div>
-      <br/>
-      <div class="row">
-        <div class="container">
-          <h3>Additional Facilities</h3>
-          <div class="row">
-            <div class="col-md-2">
-              <div style="display: inline;">
-                <input type="checkbox" id="extra_bed" name="extra_bed" style="max-width :20px; max-height:20px; display: inline;" class="form-control"/>  Extra bed
-              </div>
-            </div>
-            <div class="col-md-2">
-              <input type="text" id="extra_bed2" name="extra_bed2" style="max-width :100px; max-height:100px; padding-right:10px;" class="form-control" placeholder="200 baht" readonly/>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      
+     
     </div>
+
   </div>
+  </div>
+  <div class="container" style="font-size: 18px;"></div>
   <bold /><h3>Room Information</h3>
   <div class="container">
     <div class="row">
@@ -192,5 +269,6 @@
         </div>
     </div>
   </div>
+  <script src="{% static 'js/suite.js' %}"></script> 
 </div>
 {% endblock start %}

@@ -34,6 +34,39 @@ class RoomTypeDetail(View):
         response["Access-Control-Allow-Origin"] = "*"
         return response
 
+class RoomTypeForm(forms.ModelForm):
+    class Meta:
+        model = RoomType
+        fields = '__all__'
+
+@method_decorator(csrf_exempt, name='dispatch')
+class RoomTypeUpdate(View):
+    def post(self, request, pk): 
+        
+        data = dict()
+        roomtype = RoomType.objects.get(pk=pk)
+        request.POST = request.POST.copy()
+        
+        request.POST['type'] = pk
+        request.POST['number'] =  reFormatNumber(request.POST['roomtype[number]'])
+        request.POST['available'] = reFormatNumber(request.POST['roomtype[available]'])
+        request.POST['price'] = reFormatNumber(request.POST['roomtype[price]'])
+        request.POST['exprice'] = reFormatNumber(request.POST['roomtype[exprice]'])
+        
+        
+
+        form = RoomTypeForm(instance=roomtype, data=request.POST)
+        if form.is_valid():
+            reservation = form.save()
+
+            data['roomtype'] = model_to_dict(reservation)
+        else:
+            data['error'] = 'form not valid!'
+
+        response = JsonResponse(data)
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
+
 def dictfetchall(cursor):
     "Return all rows from a cursor as a dict"
     columns = [name[0].replace(" ", "_").lower() for name in cursor.description]
@@ -41,3 +74,7 @@ def dictfetchall(cursor):
         dict(zip(columns, row))
         for row in cursor.fetchall()
     ]
+def reFormatNumber(str):
+        if (str == ''):
+            return ''
+        return str.replace(",", "")

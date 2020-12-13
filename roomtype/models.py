@@ -5,6 +5,7 @@ class RoomType(models.Model):
     number = models.IntegerField()
     available = models.IntegerField()
     price = models.FloatField(null=True, blank=True)
+    exprice = models.FloatField(null=True, blank=True)
     class Meta:
         db_table = "roomtype"
         managed = True
