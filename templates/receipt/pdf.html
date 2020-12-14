@@ -1,0 +1,76 @@
+{% extends 'baseblank.html' %}
+{% load static %}
+
+{% block title %}Receipt Report{% endblock %}
+
+{% block title_name %}Receipt Form{% endblock %}
+
+{% block script %}
+{% endblock %}
+
+{% block content %}
+<div id='content'>
+    <div class='row'>
+        <div class='col-sm'>
+        Invoice No: {{ receipt.receipt_no }}<br>
+        </div>
+        <div class='col-sm'>
+        Invoice Date: {{ receipt.date }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+        Guest Account ID: {{ receipt.customer_code }}<br>
+        </div>
+        <div class='col-sm'>
+        Guest Name: {{ receipt.customer_code__name }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+        Payment Method: {{ receipt.payment_method }}<br>
+        </div>
+        <div class='col-sm'>
+        Payment Reference: {{ receipt.payment_reference }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+        Remarks: {{ receipt.remarks }}<br>
+        </div>
+    </div>
+    <div class='row'>
+        <div class='col-sm'>
+            Total received: {{ receipt.total_received }}<br>
+        </div>
+    </div>
+    <div class='row'></div>
+    <br />
+        Received for these Sales Invoice 
+    </br>
+    <table class='table'>
+        <tr>
+            <th>#</th>
+            <th>Invoice No</th>
+            <th>Invoice Date</th>
+            <th>Invoice Full Amount</th>
+            <th>Invoice Amount Remain</th>
+            <th>Amount Paid Here</th>
+        </tr>
+    {% for lineitem in receiptlineitem %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ lineitem.invoice_no }}</td>
+            <td>{{ lineitem.invoice_no__invoice_date }}</td>
+            <td>{{ lineitem.invoice_no__amount_due }}</td>
+            <td>{{ lineitem.invoice_amount_remain }}</td>
+            <td>{{ lineitem.amount_paid_here }}</td>
+        <tr>
+    {% endfor %}
+        <tr>
+            <td colspan='4'></td>
+            <td >Total Received</td><td>{{ receipt.total_received }}</td>
+        </tr>
+    </table>
+</div>
+{% endblock %}

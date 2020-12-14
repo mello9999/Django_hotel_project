@@ -1,109 +1,143 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 {% load static %}
 
 {% block title %}invoice{% endblock %}
 
 {% block script %}
-    <script src="{% static 'js/invoice.js' %}"></script>
+   <!-- <script src="{% static 'js/invoice.js' %}"></script> -->
 {% endblock %}
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
     <div class="col-md-6">
       <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "invoice_forms" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Invoice Forms</a></li>
-        <li><a href="{% url "receipt_form" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Receipt Forms</a></li>
-        <li><a href="{% url "report" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Report</a></li>
+        <li><a href="{% url "invoice" %}"><span class="glyphicon glyphicon-list-alt"></span> &nbsp; Invoice Forms</a></li>
+        <li><a href="{% url "receipt" %}"><span class="glyphicon glyphicon-th"></span> &nbsp; Receipt Forms</a></li>
       </ul>
     </div>
   </div>
 </div>
-
-<div class="container" style="font-size: 18px;">
-    <div class="row">
-        <form method="post" action="//submit.form" onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
-            <div class="col-lg-6">
-                <div style="max-width: 400px;">
+<div class="container">
+    <div class="card">
+        <div class="row">
+            <bold/><h1>Invoice Form</h1>
+            <ul class="nav navbar-nav navbar-lelf">
+                <li><a href="#"><span class="glyphicon glyphicon-list-alt" id="new"></span> &nbsp; New</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-edit" id="edit"></span> &nbsp; Edit</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-floppy-save" id="save"></span> &nbsp; Save</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-trash" id="delete"></span> &nbsp; Delete</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-file" id="pdf"></span> &nbsp; PDF</a></li>
+            </ul>
+        </div>
+        <div class ="row">
+            <div class="col-md-6">
+                Invoice No <span style="color: red;"> *</span> : <input type="text" id="invoice_no" name="invoice_no" style="max-width:250px;;" class="form-control" placeholder="new" readonly/>
             </div>
-            <div style="padding-bottom: 18px;font-size : 24px;">
-            <bold/><h1>Invoice Forms</h1></div>
-            <div style="display: flex; padding-bottom: 18px;max-width : 450px;">
-            <div style=" margin-left: 0; margin-right: 1%; width: 49%;">Invoice No.<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_2" name="data_2" style="max-width: 100%;" class="form-control" placeholder="8500"/>
+            <div class="col-md-6">
+                Invoice Date <span style="color: red;"> *</span> : <input type="text" id="invoice_date" name="invoice_date" style="max-width : 250px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                <script type="text/javascript">new Pikaday({ field: document.getElementById('invoice_date') });</script>
             </div>
-            <div class="col-lg-6">
-                <div style="padding-bottom: 12px;">Invoice date<span style="color: red;"> *</span><br/>
-                    <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control" placeholder="Fri Dec 11 2020"/>
-                </div>
-                <script type="text/javascript">new Pikaday({ field: document.getElementById('data_6') });</script>
+        </div>
+        <div class ="row">
+            <div class="col-md-2">
+                Guest Account ID <span style="color: red;"> *</span> :
+                <input type="text" id="guest_account_id" name="guest_account_id" style="max-width:250px;;" class="form-control" placeholder="001" required />
             </div>
-            </div><div style="padding-bottom: 18px;">Guest Account ID<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_4" name="data_4" style="max-width : 450px;" class="form-control" placeholder="110220xxx"/>
+            <div class="col-md-4" style="margin-top: 30px;">
+                <span class="glyphicon glyphicon-search"></span>
             </div>
-            <div style="padding-bottom: 18px;">Guest Name<span style="color: red;"> *</span><br/>
-            <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="Klao"/>
+            <div class="col-md-4">
+                Guest Name :
+                <input type="text" id="guest_name" name="guest_name" style="max-width:250px;;" class="form-control" placeholder="Natchapoooo Patamawisuttooo" readonly/>
             </div>
-            <div style="padding-bottom: 18px;">Booking ID<span style="color: red;"> *</span><br/>
-                <input type="text" id="data_5" name="data_5" style="max-width : 450px;" class="form-control" placeholder="196201"/>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                Booking ID <span style="color: red;"> *</span> :
+                <input type="text" id= "booking_id" name="booking_id" style="max-width:250px;;" class="form-control" placeholder="00001" required />
             </div>
-        </form>
-    </div> 
-   
-            
-            <script type="text/javascript">
-            function validateForm() {
-            if (isEmpty(document.getElementById('data_2').value.trim())) {
-            alert('Invoice No is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_6').value.trim())) {
-            alert('Invoice Date is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_4').value.trim())) {
-            alert('Guest Account ID is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_5').value.trim())) {
-            alert('Guest Name is required!');
-            return false;
-            }
-            if (!validateEmail(document.getElementById('data_4').value.trim())) {
-            alert('Guest Account ID must be a valid account.');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_5').value.trim())) {
-            alert('Booking ID is required!');
-            return false;
-            }
-            return true;
-            }
-            function isEmpty(str) { return (str.length === 0 || !str.trim()); }
-            </script>
-
-            <table class='table table-bordered table-hover'>
-                <thead class="thead-dark">
+        </div>
+        <br/>
+        <h5>Service Cost : </h5>
+        <div class="container" style="max-width:1000px;">
+            <table class="table table-hover table-condensed" >
                 <tr>
                     <th>#</th>
-                    {% for name in column_name %}
-                    <th>{{ name }} </th>
-                    {% endfor %}
+                    <th>Room Type</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Extended Price</th>
+                    <th><span class="glyphicon glyphicon-plus"></span></th>
                 </tr>
-                </thead>
                 <tbody>
-            {% for lineitem in data %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ lineitem.invoice_no }}</td>
-                    <td>{{ lineitem.invoice_date|default:""}}</td>
-                    <td>{{ lineitem.account_id }}</td>
-                    <!--td>{{ lineitem.customer_name }}</td-->
-                    <td>{{ lineitem.due_date|default:""  }}</td>
-                    <td>{{ lineitem.total|intcomma }}</td>
-                    <td>{{ lineitem.vat|intcomma }}</td>
-                    <td>{{ lineitem.amount_due|intcomma }}</td>
-                <tr>
-            {% endfor %}
+                    <tr>
+                        <td>1</td>
+                        <td>Single Room</td>
+                        <td>1500</td>
+                        <td>1</td>
+                        <td>1500</td>
+                        <th><span class="glyphicon glyphicon-plus"></span></th>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <th><span class="glyphicon glyphicon-plus"></span></th>
+                    </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total Price : </td>
+                        <td>1500</td>
+                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>VAT 7 % : </td>
+                        <td>50</td>
+                        
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Amount Due : </td>
+                        <td>1550</td>
+                        
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
 </div>
+<style>
+    .card {
+        margin: 40px 0px;
+        padding: 40px 50px;
+        border-radius: 20px;
+        border: none;
+        box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.2)
+    }
+</style>
+<script type="text/javascript">
+    function validateForm() {
+    if (isEmpty(document.getElementById('invoice_date').value.trim())) {
+    alert('invoice_date is required!');
+    return false;
+    }
+    return true;
+    }
+    function isEmpty(str) { return (str.length === 0 || !str.trim()); }
+    function validateEmail(email) {
+    var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
+    return isEmpty(email) || re.test(email);
+    }
+    </script>
 {% endblock start %}
