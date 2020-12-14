@@ -52,8 +52,9 @@ urlpatterns = [
     path('reserve/update',reserve_view.ReservationUpdate.as_view(),name="reserve_update"),
     path('reserve/delete',reserve_view.ReservationDelete.as_view(),name="reserve_delete"),
     path('reserve/list',reserve_view.ReservationList.as_view(),name="reserve_list"),
+    path('reserve/detail',reserve_view.ReservationDetail.as_view(),name="reserve_detail"),
+    path('total_payment/',reserve_view.cart,name="total_payment"),
 
-    path('total_payment/',user_view.TotalPayment,name="total_payment"),
     path('pay_form/',user_view.PaymentForm,name="pay_form"),
 
     path('roomtype/update/<pk>',roomtype_view.RoomTypeUpdate.as_view(),name="roomtype_update"),

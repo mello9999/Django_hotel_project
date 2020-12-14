@@ -14,6 +14,18 @@ from django.db import connection
 from reservation.models import *
 import json
 
+def cart(request):
+    reservation = list(Reservation.objects.all().values())
+    
+    nl = []   
+    for r in reservation:
+        print(r)
+        if r['account_id_id'] == request.user.id:
+            nl.append(r)
+    data = dict()
+    data['reservation'] = nl
+    return render(request, 'bill/totalpayment.html', data)
+
 # Create your views here.
 class ReservationList(View):
     def get(self, request):

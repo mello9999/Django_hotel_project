@@ -5,14 +5,14 @@
 {% block title %}Invoice{% endblock %}
 
 {% block script %}
-    <!-- <script src="{% static 'js/...' %}"></script> -->
+    <script src="{% static 'js/cart.js' %}"></script> 
 {% endblock %}
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
     <div class="col-md-6">
       <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "check_status" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
+        <li><a href="{% url "index" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
         <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
         <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
       </ul>
@@ -33,41 +33,50 @@
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
                         <tr>
-                            <th style="width:30%">Room</th>
-                            <th style="width:10%">Price</th>
-                            <th style="width:8%">Quantity</th>
-                            <th style="width:10%" class="text-center">Subtotal</th>
+                            <th style="width:10%">Room Type</th>
+                            <th style="width:30%">Check-In</th>
+                            <th style="width:30%">Check-Out</th>
+                            <th style="width:10%">Extra Bed</th>
+                            <th style="width:5%" class="text-center">No. <br> Adult</th>
+                            <th style="width:5%" class="text-center">No. Child</th>
+                            <th style="width:5%" class="text-center">No. Room</th>
+                            <th style="width:10%" class="text-center">Total Price</th>
                             <th style="width:10%"></th>
                         </tr>
                     </thead>
                     <tbody style="font-size: 20px;">
+                        {% for r in reservation %}
                         <tr>
+                            
                             <td data-th="Room">
                                 <div class="row">
-                                    <div class="col-sm-2 hidden-xs"><img src="{% static './img/single/single4.jpg' %}"  class="img-responsive"/></div>
                                     <div class="col-sm-8">
-                                        <h4 class="nomargin">Single room</h4>
+                                        <h4 class="nomargin">{{ r.room_type_id }}</h4>
                                     </div>
                                 </div>
                             </td>
-                            <td data-th="Price">฿1500</td>
-                            <td data-th="Quantity">
-                                <input type="number" class="form-control text-center" value="1">
+                            <td data-th="check_in">{{r.check_in}}</td>
+                            <td data-th="check_out">{{r.check_out}}</td>
+                            <td data-th="extra_bed">{{r.extra_bed}}</td>
+                            <td data-th="no_adult" class="text-center">{{r.no_adult}}</td>
+                            <td data-th="no_child" class="text-center">{{r.no_child}}</td>
+                            <td data-th="no_room" class="text-center">{{r.no_room}}</td>
+                            <td data-th="totalprice" class="text-center">฿{{r.totalprice}}</td>
+                            <td id='delete_containers' class="actions" data-th="">
+                                <button  data-bookingid={{r.booking_id}} class="delete_cart"><i class="fa fa-trash-o"></i></button>								
                             </td>
-                            <td data-th="Subtotal" class="text-center">฿1500</td>
-                            <td class="actions" data-th="">
-                                <button id="add_cart" class="btn btn-info btn-sm"><i class="fa fa-plus"></i></button>
-                                <button id="delete_cart" class="btn btn-danger btn-sm"><i class="fa fa-trash-o"></i></button>								
-                            </td>
+                            
+
                         </tr>
+                        {% endfor %}
                     </tbody>
                     <tfoot>
                         <tr class="visible-xs">
                             <td class="text-center"><strong>Total</strong></td>
                         </tr>
                         <tr>
-                            <td><a href="{% url "check_status" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Booking</a></td>
-                            <td colspan="{% url "check_status" %}" class="hidden-xs"></td>
+                            <td><a href="{% url "index" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Booking</a></td>
+                            <td colspan="{% url "index" %}" class="hidden-xs"></td>
                             <td class="hidden-xs text-center"><strong>Total
                                 <td data-th="Subtotal">
                                     <input type="text" class="form-control text-center" placeholder="total price" readonly>
@@ -147,7 +156,7 @@
 
     });
 </script>
-
+<script src="{% static 'js/cart.js' %}"></script> 
 
 <style>
     body {
@@ -253,7 +262,7 @@
         filter: grayscale(100%);
         color: #E0E0E0
     }
-    
+
     .gray .pay {
         box-shadow: none
     }
@@ -274,6 +283,12 @@
         cursor: pointer
     }
     
+    .delete_cart {
+        background-color: #eb0c0c;
+        color: #fff;
+        padding: 5px;
+    }
+
     .btn-blue:hover {
         background-color: #008800;
         color: #fff
