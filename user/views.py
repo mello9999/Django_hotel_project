@@ -127,3 +127,6 @@ def PaymentForm(request):
 
 def Invoice(request):
     return render(request,'invoice/invoice.html')
+
+def Receipt(request):
+    return render(request,'receipt/receipt.html')

@@ -60,6 +60,6 @@ urlpatterns = [
     path('roomtype/update/<pk>',roomtype_view.RoomTypeUpdate.as_view(),name="roomtype_update"),
     path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
 
-    path('invoice/',user_view.Invoice,name="invoice")
-
+    path('invoice/',user_view.Invoice,name="invoice"),
+    path('receipt/',user_view.Receipt,name="receipt"),
 ]

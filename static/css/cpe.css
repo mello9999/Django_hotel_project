@@ -1,0 +1,99 @@
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(179, 179, 179);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li.active {
+  background-color:rgb(73, 73, 73);
+}
+
+li.active a {
+  color:rgb(25, 28, 25);
+}
+
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+  background-color: rgb(119, 119, 119);
+}
+
+.hide {
+    display: none!important;
+}
+/* enable absolute positioning */
+.inner-addon { 
+    position: relative; 
+}
+
+/* style icon */
+.inner-addon .glyphicon {
+  position: absolute;
+  padding: 10px;
+  pointer-events: none;
+}
+
+/* align icon */
+.left-addon .glyphicon  { left:  0px;}
+.right-addon .glyphicon { right: 0px;}
+
+/* add padding  */
+.left-addon input  { padding-left:  30px; }
+.right-addon input { padding-right: 30px; }
+
+
+
+
+/* editable */
+.table-editable {
+    position: relative;
+    
+    .glyphicon {
+      font-size: 20px;
+    }
+  }
+  
+  .table-remove {
+    color: rgb(255, 0, 0);
+    cursor: pointer;
+    
+    &:hover {
+      color: #ff6666 ;
+    }
+  }
+  
+  .table-up, .table-down {
+    color: rgb(0, 96, 64);
+    cursor: pointer;
+    
+    &:hover {
+      color: rgb(0, 96, 64) ;
+    }
+  }
+  
+  .table-addx {
+    color: #070;
+    cursor: pointer;
+    position: absolute;
+  top: 8px;
+  right: 0;
+    
+    &:hover {
+      color: #0b0;
+    }
+  }
