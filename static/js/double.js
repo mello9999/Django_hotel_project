@@ -19,10 +19,10 @@ $(document).ready( function() {
     });
 
     $('#exprice').change(function () { 
-        let date1 = $('#data_6').val();
-        date1 = new Date(String(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(date1.slice(4,7)) + 1) +'/'+date1.slice(8,10) +'/'+ date1.slice(11,15))
-        let date2 = $('#data_7').val();
-        date2 = new Date(String(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(date2.slice(4,7)) + 1) +'/'+date2.slice(8,10) +'/'+ date2.slice(11,15))
+        let date1 = new Date($('#data_6').val());
+       
+        let date2 = new Date($('#data_7').val());
+       
         let diff = date2.getTime() - date1.getTime();  
         let daydiff = diff / (1000 * 60 * 60 * 24);   
         $.ajax({
@@ -51,13 +51,13 @@ $(document).ready( function() {
     }
     )})
     $('#txt_no_room').change(function () {
-        let date1 = $('#data_6').val();
-        date1 = new Date(String(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(date1.slice(4,7)) + 1) +'/'+date1.slice(8,10) +'/'+ date1.slice(11,15))
-        let date2 = $('#data_7').val();
-        date2 = new Date(String(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"].indexOf(date2.slice(4,7)) + 1) +'/'+date2.slice(8,10) +'/'+ date2.slice(11,15))
+        let date1 = new Date($('#data_6').val());
+       
+        let date2 = new Date($('#data_7').val());
+        
         let diff = date2.getTime() - date1.getTime();  
         let daydiff = diff / (1000 * 60 * 60 * 24);   
-        console.log(daydiff)
+        console.log(daydiff,'daydiffdaydiffdaydiffdaydiff')
         $.ajax({
             url:  '/roomtype/detail/' + 'double',
             type:  'get',

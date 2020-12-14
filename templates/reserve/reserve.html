@@ -5,110 +5,128 @@
 {% block title %}Hotel Reservation{% endblock %}
 
 {% block script %}
-    <script src="{% static 'js/reserve.js' %}"></script>
+<script src="{% static 'js/reserve.js' %}"></script>
 {% endblock %}
 
 {% block start %}
 <div class="collapse navbar-collapse" id="mainNavBar">
     <div class="col-md-6">
-      <ul class="nav navbar-nav navbar-lelf">
-        <li><a href="{% url "index" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status Room</a></li>
-        <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a></li>
-        <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp; Cart</a></li>
-      </ul>
+        <ul class="nav navbar-nav navbar-lelf">
+            <li><a href="{% url "index" %}"><span class="glyphicon glyphicon-calendar"></span> &nbsp; Check Status
+                    Room</a></li>
+            <li><a href="{% url "reserve" %}"><span class="glyphicon glyphicon-briefcase"></span> &nbsp; Reservation</a>
+            </li>
+            <li><a href="{% url "total_payment" %}"><span class="glyphicon glyphicon-shopping-cart"></span> &nbsp;
+                    Cart</a></li>
+        </ul>
     </div>
-  </div>
+</div>
 </div>
 
 <div class="container" style="font-size: 18px;">
     <div class="row">
-        <form onSubmit="return validateForm();" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+        <form onSubmit="return validateForm();"
+            style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
             <div class="col-lg-6">
-                <br/>
-                <br/>
-                <img src="{% static './img/room.jpg' %}" width="400" height="400"/>
+                <br />
+                <br />
+                <img src="{% static './img/room.jpg' %}" width="400" height="400" />
             </div>
             <div class="col-lg-6">
                 <div style="max-width: 400px;">
-            </div>
-            <div style="padding-bottom: 18px;font-size : 24px;">
-            <bold/><h1>Booking Room</h1></div>
-            <div style="display: flex; padding-bottom:5px;max-width : 450px;">
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br/>
-                        <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control" placeholder="Fri Dec 11 2020"/>
+                </div>
+                <div style="padding-bottom: 18px;font-size : 24px;">
+                    <bold />
+                    <h1>Booking Room</h1>
+                </div>
+                <div style="display: flex; padding-bottom:5px;max-width : 450px;">
+                </div>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div style="padding-bottom: 12px;">Check-In date<span style="color: red;"> *</span><br />
+                            <input type="text" id="data_6" name="data_6" style="max-width : 250px;" class="form-control"
+                                placeholder="Fri Dec 11 2020" />
+                        </div>
+
                     </div>
-                    
-                </div>
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br/>
-                        <input type="text" id="data_7" name="data_7" style="max-width : 250px;" class="form-control" placeholder="Mon Dec 14 2020"/>
-                    </div>                             
-                    
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_8" name="data_8" style="max-width : 400px; font-size: 12px;" class="form-control" placeholder="Please Select Number" min="0" required/>
+                    <div class="col-lg-6">
+                        <div style="padding-bottom: 12px;">Check-Out date<span style="color: red;"> *</span><br />
+                            <input type="text" id="data_7" name="data_7" style="max-width : 250px;" class="form-control"
+                                placeholder="Mon Dec 14 2020" />
+                        </div>
+
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_9" name="data_9" style="max-width : 400px; font-size: 12px;" class="form-control"placeholder="Please Select Number" min="0" required/>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div style="padding-bottom: 12px;">Number of adults<span style="color: red;"> *</span><br />
+                            <input type="number" id="data_8" name="data_8" style="max-width : 400px; font-size: 12px;"
+                                class="form-control" placeholder="Please Select Number" min="0" required />
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br/>
-                        <input type="number" id="data_10" name="data_10" style="max-width :400px; font-size: 12px;" class="form-control"placeholder="Please Select Number" min="1" required/>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div style="padding-bottom: 12px;"><br/>
-                        <div style="display: flex; ">
-                            <input type="checkbox" id="extra_bed" name="extra_bed" style="max-width :20px; max-height:20px; display: inline; margin-left:10px;" class="form-control"/> <p style="margin:5px;">Extra bed </p>
-                            <input type="text" id="txt_realexprice" name="extra_bed2" style="max-width :60px; max-height:100px; padding-right:0px;  "class="form-control" placeholder="price" readonly/>
+                    <div class="col-lg-6">
+                        <div style="padding-bottom: 12px;">Number of children<span style="color: red;"> *</span><br />
+                            <input type="number" id="data_9" name="data_9" style="max-width : 400px; font-size: 12px;"
+                                class="form-control" placeholder="Please Select Number" min="0" required />
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <h4>Room Type<span style="color: red;"> *</span></h4>
-                    <select id="inputState" class="form-control" style="max-width :600px;">
-                        <option selected>Single Room</option>
-                        <option>Double Room</option>
-                        <option>Suite Room</option>
-                        <option>Deluxe Room</option>
-                        <option>Premier Room</option>
-                    </select>
-                </div>
-            </div>
-            <br/>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div style="padding-bottom: 12px;">Total Price<br/>
-                        <input type="text" id="txt_totalprice" name="data_12" style="max-width :600px;" class="form-control" placeholder="" value="0" readonly/>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div style="padding-bottom: 12px;">Number of room<span style="color: red;"> *</span><br />
+                            <input type="number" id="data_10" name="data_10" style="max-width :400px; font-size: 12px;"
+                                class="form-control" placeholder="Please Select Number" min="1" required />
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div style="padding-bottom: 12px;"><br />
+                            <div style="display: flex; ">
+                                <input type="checkbox" id="extra_bed" name="extra_bed"
+                                    style="max-width :20px; max-height:20px; display: inline; margin-left:10px;"
+                                    class="form-control" />
+                                <p style="margin:5px;">Extra bed </p>
+                                <input type="text" id="txt_realexprice" name="extra_bed2"
+                                    style="max-width :60px; max-height:100px; padding-right:0px;  " class="form-control"
+                                    placeholder="price" readonly />
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <br/>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h4>Room Type<span style="color: red;"> *</span></h4>
+                        <select id="inputState" class="form-control" style="max-width :600px;">
+                            <option selected>Single Room</option>
+                            <option>Double Room</option>
+                            <option>Suite Room</option>
+                            <option>Deluxe Room</option>
+                            <option>Premier Room</option>
+                        </select>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div style="padding-bottom: 12px;">Total Price<br />
+                            <input type="text" id="txt_totalprice" name="data_12" style="max-width :600px;"
+                                class="form-control" placeholder="" value="0" readonly />
+                        </div>
+                    </div>
+                </div>
+                <br />
             </div>
             <center>
                 <div style="padding-bottom: 18px;">
-                    <a href="{% url "total_payment" %}"><button font-size: 10rem; padding:1%; class="btn btn-success" type="submit" name="booking" value="Submit">
-                        <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button></a>
+                    <a href="{% url "total_payment" %}"><button font-size: 10rem; padding:1%; class="btn btn-success"
+                            type="submit" name="booking" value="Submit">
+                            <span class="glyphicon glyphicon-booking"></span> &nbsp;Booking Now!!!</button></a>
                 </div>
             </center>
-            </form>
-            
-            <script type="text/javascript">
+        </form>
+
+        <script type="text/javascript">
             var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            
+
             $('#data_6').datepicker({
                 minDate: today,
                 maxDate: function () {
@@ -117,111 +135,130 @@
             });
             $('#data_7').datepicker({
                 minDate: function () {
-                  return $('#data_6').val();
+                    return $('#data_6').val();
                 }
             });
             function validateForm() {
-           
-            if (isEmpty(document.getElementById('data_6').value.trim())) {
-            alert('Check-In date is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_7').value.trim())) {
-            alert('Check-Out date is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_8').value.trim())) {
-            alert('Number of adults is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_9').value.trim())) {
-            alert('Number of children is required!');
-            return false;
-            }
-            if (isEmpty(document.getElementById('data_10').value.trim())) {
-            alert('Number of room is required!');
-            return false;
-            }
-            if ($('#data_10').val()<1){
-                alert('Number of room is required!');
-                return false;
-              }
-  
-              let formdata = {
-                'check_in' : $('#data_6').val(),
-                'check_out' : $('#data_7').val(),
-                'no_adult' : $('#data_8').val(),
-                'no_child' : $('#data_9').val(),
-                'no_room' : $('#data_10').val(),
-                'extra_bed' : $('#extra_bed').is(':checked'),
-                'room_type' : $('#inputState option:selected').text().split(" ")[0].toLowerCase()
-              }
-              $.ajax({
-                url:  '/roomtype/detail/' + $('#inputState option:selected').text().split(" ")[0].toLowerCase(),
-                type:  'get',
-                dataType:  'json',
-                success: function  (data) {
-                  
-                 if (data.roomtype.available === 0) {
-                   alert('Room Full')
-                   return false;
-                 }
-                
-              $.ajax({
-                url:  '/reserve/create',
-                type:  'post',
-                dataType:  'json',
-                data:formdata,
-                success: function  (data) {
-                  
-                  
-                  $.ajax({
-                    url:  '/roomtype/detail/' + $('#inputState option:selected').text().split(" ")[0].toLowerCase(),
-                    type:  'get',
-                    dataType:  'json',
-                    success: function  (data) {
-                      
-                        data.roomtype.available = parseInt(data.roomtype.available) - 1;
-                        
+
+                if (isEmpty(document.getElementById('data_6').value.trim())) {
+                    alert('Check-In date is required!');
+                    return false;
+                }
+                if (isEmpty(document.getElementById('data_7').value.trim())) {
+                    alert('Check-Out date is required!');
+                    return false;
+                }
+                if (isEmpty(document.getElementById('data_8').value.trim())) {
+                    alert('Number of adults is required!');
+                    return false;
+                }
+                if (isEmpty(document.getElementById('data_9').value.trim())) {
+                    alert('Number of children is required!');
+                    return false;
+                }
+                if (isEmpty(document.getElementById('data_10').value.trim())) {
+                    alert('Number of room is required!');
+                    return false;
+                }
+                if ($('#data_10').val() < 1) {
+                    alert('Number of room is required!');
+                    return false;
+                }
+
+                let date1 = new Date($('#data_6').val())
+                let date2 = new Date($('#data_7').val())
+              
+                    let formdata = {
+                        'check_in': $('#data_6').val(),
+                        'check_out': $('#data_7').val(),
+                        'no_adult': $('#data_8').val(),
+                        'no_child': $('#data_9').val(),
+                        'no_room': $('#data_10').val(),
+                        'extra_bed': $('#exprice').is(':checked'),
+                        'total_price': $('#txt_totalprice').val(),
+                        'room_type': $('#inputState option:selected').text().split(" ")[0].toLowerCase()
+                    }
+                $.ajax({
+                    url: '/roomtype/detail/' + $('#inputState option:selected').text().split(" ")[0].toLowerCase(),
+                    type: 'get',
+                    dataType: 'json',
+                    success: function (data) {
+
                         $.ajax({
-                          url:  '/roomtype/update/'+$('#inputState option:selected').text().split(" ")[0].toLowerCase(),
-                          type:  'post',
-                          dataType:  'json',
-                          data:data,
-                          success: function  (data) {
-                          },
+                            url: '/reserve/list',
+                            type: 'get',
+                            dataType: 'json',
+                            success: function (data) {
+
+
+
+                                let doubleArr = [];
+
+                                for (let i = 0; i < data.reservation.length; i++) {
+                                    if (data.reservation[i].room_type_id === $('#inputState option:selected').text().split(" ")[0].toLowerCase()) {
+                                        doubleArr.push(data.reservation[i])
+                                    }
+                                }
+                                let doubleCount = 0;
+                                for (let i = 0; i < doubleArr.length; i++) {
+                                    let cd1 = new Date(doubleArr[i].check_in);
+                                    let cd2 = new Date(doubleArr[i].check_out);
+                                    if (cd1 > date2 || cd2 < date1) {
+                                        doubleCount += 1;
+                                    }
+                                }
+                                doubleCount = doubleArr.length - doubleCount;
+                                $.ajax({
+                                    url: '/roomtype/detail/' + $('#inputState option:selected').text().split(" ")[0].toLowerCase(),
+                                    type: 'get',
+                                    dataType: 'json',
+                                    success: function (data) {
+
+                                        if (data.roomtype.number - doubleCount === 0) {
+                                            alert('Room Full')
+                                            return false
+                                        }
+                                    },
+                                    error: function (xhr, status, error) {
+                                        console.log(error)
+                                    }
+                                });
+
+                            },
                             error: function (xhr, status, error) {
                                 console.log(error)
-                                alert('Bookings Failed1!!');
                             }
-                    })},
-                    error: function (xhr, status, error) {
+                        })
+                    }
+                });
+
+                $.ajax({
+                    url: '/reserve/create',
+                    type: 'post',
+                    dataType: 'json',
+                    data: formdata,
+                    success: function (data) {
+                        console.log(data)
+
+
+                        alert('Bookings Success!!');
+                        window.location.href = '/';
+                    }, error: function (xhr, status, error) {
                         console.log(error)
-                        alert('Bookings Failed2!!');
-                    }}
-                );
-                alert('Bookings Success!!');
-                  window.location.href = '/';
-                },error: function (xhr, status, error) {
-                  console.log(error)
-                  alert('Bookings Failed4!!');
-              }
-              });        
-            },
-            error: function (xhr, status, error) {
-                console.log(error)
-                alert('Bookings Failed2!!');
-            }}
-        );
-              return false;
+                        alert('Bookings Failed4!!');
+                    }
+                });
+
+
+                return false;
             }
             function isEmpty(str) { return (str.length === 0 || !str.trim()); }
             function validateEmail(email) {
-            var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
-            return isEmpty(email) || re.test(email);
+                var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,15}(?:\.[a-z]{2})?)$/i;
+                return isEmpty(email) || re.test(email);
             }
-            </script>
-            <script src="{% static 'js/reserve.js' %}"></script>
-</div>
+        </script>
+        <script src="{% static 'js/reserve.js' %}"></script>
+    </div>
 
-{% endblock start %}
+    {% endblock start %}

@@ -56,17 +56,13 @@ class ReservationCreate(View):
     def post(self, request):
         data = dict()
         request.POST = request.POST.copy()
+        print(request.POST, 'request.POSTrequest.POSTrequest.POST')
         if Reservation.objects.count() != 0:
             booking_id_max = Reservation.objects.aggregate(Max('booking_id'))['booking_id__max']
             next_booking_id = booking_id_max+1
         else:
             next_booking_id = 0
         request.POST['booking_id'] = next_booking_id
-        request.POST['check_in'] = reFormatDateMMDDYYYY(request.POST['check_in'])
-        request.POST['check_out'] = reFormatDateMMDDYYYY(request.POST['check_out'])
-        request.POST['no_adult'] = reFormatNumber(request.POST['no_adult'])
-        request.POST['no_child'] = reFormatNumber(request.POST['no_child'])
-        request.POST['no_room'] = reFormatNumber(request.POST['no_room'])
         request.POST['account_id'] = request.user.id
         
         form = ReservationForm(request.POST)
@@ -75,7 +71,7 @@ class ReservationCreate(View):
 
             data['reservation'] = model_to_dict(reservation)
         else:
-            print(form.errors)
+            print(form.errors,'errrrrrrrrrrrrrrrrrrrrrrr')
             data['error'] = 'form not valid!'
 
         response = JsonResponse(data)
@@ -90,11 +86,7 @@ class ReservationUpdate(View):
         reservation = Reservation.objects.get(pk=booking_id)
         request.POST = request.POST.copy()
         request.POST['booking_id'] = booking_id
-        request.POST['check_in'] = reFormatDateMMDDYYYY(request.POST['check_in'])
-        request.POST['check_out'] = reFormatDateMMDDYYYY(request.POST['check_out'])
-        request.POST['no_adult'] = reFormatNumber(request.POST['no_adult'])
-        request.POST['no_child'] = reFormatNumber(request.POST['no_child'])
-        request.POST['no_room'] = reFormatNumber(request.POST['no_room'])
+        
         
 
         form = ReservationForm(instance=reservation, data=request.POST)

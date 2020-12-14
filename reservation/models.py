@@ -11,6 +11,7 @@ class Reservation(models.Model):
     extra_bed = models.BooleanField()
     account_id = models.ForeignKey(User, on_delete=models.CASCADE, db_column='account_id')
     room_type = models.ForeignKey(RoomType, on_delete=models.CASCADE, db_column='room_type')
+    total_price = models.FloatField(null=True, blank=True)
     class Meta:
         db_table = "reservation"
         managed = True

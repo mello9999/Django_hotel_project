@@ -40,13 +40,13 @@
                             <th style="width:5%" class="text-center">No. <br> Adult</th>
                             <th style="width:5%" class="text-center">No. Child</th>
                             <th style="width:5%" class="text-center">No. Room</th>
-                            <th style="width:10%" class="text-center">Total Price</th>
+                            <th style="width:10%" class="text-center"> Prices</th>
                             <th style="width:10%"></th>
                         </tr>
                     </thead>
-                    <tbody style="font-size: 20px;">
+                    <tbody id="delete_containers" style="font-size: 20px;">
                         {% for r in reservation %}
-                        <tr>
+                        <tr id={{r.booking_id}}>
                             
                             <td data-th="Room">
                                 <div class="row">
@@ -61,7 +61,7 @@
                             <td data-th="no_adult" class="text-center">{{r.no_adult}}</td>
                             <td data-th="no_child" class="text-center">{{r.no_child}}</td>
                             <td data-th="no_room" class="text-center">{{r.no_room}}</td>
-                            <td data-th="totalprice" class="text-center">฿{{r.totalprice}}</td>
+                            <td data-th="totalprice" class="text-center">{{r.total_price}}</td>
                             <td id='delete_containers' class="actions" data-th="">
                                 <button  data-bookingid={{r.booking_id}} class="delete_cart"><i class="fa fa-trash-o"></i></button>								
                             </td>
