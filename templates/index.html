@@ -147,11 +147,11 @@
           <h1>Lay View Hotel</h1>
           <div class="row">
             <div class="col-md-4">
-              <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" />
+              <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" value={{ check_in }}/>
             </div>
             <div class="col-md-4">
              
-              <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" />
+              <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" value={{ check_out }}/>
             </div>
             <br/>
             <div class="col-md-4">
@@ -166,7 +166,7 @@
           </div>
           <script>
             var today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
-            $('#txt_singlestatus').val("abc")
+            
             $('#check_in').datepicker({
                 minDate: today,
                 maxDate: function () {
@@ -333,10 +333,10 @@
           <div class="col">
             
             <div class="col-md-4">
-              <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" />
+              <h4>Check-in : </h4><input id="check_in"  name="check_in" width="300" value={{ check_in }} />
             </div>
             <div class="col-md-4">
-              <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" />
+              <h4>Check-out : </h4><input id="check_out" name="check_out" width="300" value={{ check_out }} />
             </div>
             
             <div class="col-md-4">
