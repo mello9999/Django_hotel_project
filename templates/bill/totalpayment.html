@@ -28,26 +28,25 @@
     </div>
     <br/>
     <div class="card" style="max-width: 500rem;">
-        <div class="row" style="font-size:22px;">
+        <div class="row" style="font-size:18px;">
             <div class="container" style="max-width:1000px;">
                 <table id="cart" class="table table-hover table-condensed">
                     <thead>
                         <tr>
                             <th style="width:10%">Room Type</th>
-                            <th style="width:30%">Check-In</th>
-                            <th style="width:30%">Check-Out</th>
-                            <th style="width:10%">Extra Bed</th>
-                            <th style="width:5%" class="text-center">No. <br> Adult</th>
-                            <th style="width:5%" class="text-center">No. Child</th>
-                            <th style="width:5%" class="text-center">No. Room</th>
-                            <th style="width:10%" class="text-center"> Prices</th>
-                            <th style="width:10%"></th>
+                            <th style="width:15%">Check-In</th>
+                            <th style="width:15%">Check-Out</th>
+                            <th style="width:15%">Extra Bed</th>
+                            <th style="width:15%" class="text-center">No. Adult</th>
+                            <th style="width:15%" class="text-center">No. Child</th>
+                            <th style="width:15%" class="text-center">No. Room</th>
+                            <th style="width:40%" class="text-center">Total Price</th>
+                            <th style="width:5%"></th>
                         </tr>
                     </thead>
-                    <tbody id="delete_containers" style="font-size: 20px;">
+                    <tbody style="font-size: 18px;">
                         {% for r in reservation %}
                         <tr id={{r.booking_id}}>
-                            
                             <td data-th="Room">
                                 <div class="row">
                                     <div class="col-sm-8">
@@ -65,7 +64,6 @@
                             <td id='delete_containers' class="actions" data-th="">
                                 <button  data-bookingid={{r.booking_id}} class="delete_cart"><i class="fa fa-trash-o"></i></button>								
                             </td>
-                            
 
                         </tr>
                         {% endfor %}
@@ -77,12 +75,15 @@
                         <tr>
                             <td><a href="{% url "index" %}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Booking</a></td>
                             <td colspan="{% url "index" %}" class="hidden-xs"></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td class="hidden-xs text-center"><strong>Total
                                 <td data-th="Subtotal">
-                                    <input type="text" class="form-control text-center" placeholder="total price" readonly>
+                                    <input type="text" class="form-control text-center" style="max-width: 100px;" placeholder="total" readonly>
                                 </td>
                             </strong></td>
-                            <td><a href="{% url "pay_form" %}" class="btn btn-success btn-block">Confirm Booking <i class="fa fa-angle-right"></i></a></td>
+                            
                         </tr>
                     </tfoot>
                 </table>
@@ -91,7 +92,7 @@
     </div>
     <br/>
     <br/>
-    <div class="col-lg-12" style="font-size: 18px;">
+    <div class="col-lg-12" style="font-size: 16px;">
         <div class="card">
             <div class="row">
                 <h1>Pay Now</h1>
@@ -129,7 +130,7 @@
                     <div class="row d-flex justify-content-between px-4" id="tax">
                         <p class="mb-1 text-left">Total (tax included)</p>
                         <h6 class="mb-1 text-right" style="font-size: 16px;"> <input type="text" class="form-control text-right" style="max-width:400px;" placeholder="฿1620" readonly></h6>
-                    </div> <button class="btn-block btn-blue" style="max-width: 500px;"> <span> <span id="checkout">Checkout</span> <span id="check-amt">฿1620</span> </span> </button>
+                    </div> <button class="btn-block btn-blue" style="max-width: 500px;"> <span> <span id="checkout">Confirm Booking</span> <span id="check-amt">฿1620</span> </span> </button>
                 </div>
             </div>
         </div>
@@ -216,12 +217,12 @@
     
     input,
     textarea {
-        background-color: #d2ffdf;
+        background-color: #f1ff92;
         padding: 8px 15px 8px 15px;
         width: 100%;
         border-radius: 5px !important;
         box-sizing: border-box;
-        border: 1px solid #d2ffdf;
+        border: 1px solid #f1ff92;
         font-size: 15px !important;
         color: #000 !important;
         font-weight: 300
@@ -276,7 +277,7 @@
     .btn-blue {
         border: none;
         border-radius: 10px;
-        background-color: #089900;
+        background-color: #ffb700 ;
         color: #fff;
         padding: 8px 15px;
         margin: 20px 0px;
@@ -290,7 +291,7 @@
     }
 
     .btn-blue:hover {
-        background-color: #008800;
+        background-color: #ffae00;
         color: #fff
     }
     
