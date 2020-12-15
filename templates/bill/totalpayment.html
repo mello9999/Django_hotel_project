@@ -60,7 +60,7 @@
                             <td data-th="no_adult" class="text-center">{{r.no_adult}}</td>
                             <td data-th="no_child" class="text-center">{{r.no_child}}</td>
                             <td data-th="no_room" class="text-center">{{r.no_room}}</td>
-                            <td data-th="totalprice" class="text-center">{{r.total_price}}</td>
+                            <td  data-th="totalprice" class="total_price text-center">{{r.total_price}}</td>
                             <td id='delete_containers' class="actions" data-th="">
                                 <button  data-bookingid={{r.booking_id}} class="delete_cart"><i class="fa fa-trash-o"></i></button>								
                             </td>
@@ -78,9 +78,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
-                            <td class="hidden-xs text-center"><strong>Total
+                            <td class="hidden-xs text-center"><strong>Total + Vat 7%
                                 <td data-th="Subtotal">
-                                    <input type="text" class="form-control text-center" style="max-width: 100px;" placeholder="total" readonly>
+                                    <input id="total" type="text" class="form-control text-center" style="max-width: 100px;" placeholder="total" readonly>
                                 </td>
                             </strong></td>
                             
