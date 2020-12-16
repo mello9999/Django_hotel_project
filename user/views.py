@@ -115,10 +115,10 @@ def HotelReservation(request):
     else: 
         return index(request)
 def TotalPayment(request):
-    #if request.user.is_authenticated:
+    if request.user.is_authenticated:
         return render(request,'bill/totalpayment.html')
-    #else: 
-        #return index(request)
+    else: 
+        return index(request)
 def PaymentForm(request):
     if request.user.is_authenticated:
         return render(request,'bill/payform.html')
