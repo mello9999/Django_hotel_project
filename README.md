@@ -38,11 +38,10 @@ here <b>env/</b> folder contains all dependencies
       DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'hotel',
-        'USER': 'natchapolpatamawisut@dd-dinner-dog',
-        'PASSWORD': '********* ',     //ใส่ password pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database 
-        'HOST': 'dd-dinner-dog.postgres.database.azure.com', 
-        'PORT': '5432',
+        'NAME': 'hotel', // ชื่อ database ใน pgAdmin 
+        'USER': 'Username', // ใส่ Username pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database
+        'PASSWORD': '********* ',  // ใส่ password pgAdmin ของตัวเอง เพื่อไว้เชื่อมกับ local database 
+        'PORT': '',
         }
     }
     </pre>

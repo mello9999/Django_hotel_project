@@ -18,6 +18,7 @@ from django.urls import path,include
 from user import views as user_view
 from reservation import views as reserve_view
 from roomtype import views as roomtype_view
+from receipt import views as receipt_view
 from django.contrib.auth import views as auth
 
 from .router import router
@@ -34,6 +35,7 @@ urlpatterns = [
 
     #####user related path##########################
     path('',include('user.urls')),
+    path('user/list', user_view.UserList.as_view(),name='user_list'),
     path('login/',user_view.Login,name='login'),
     path('logout/',auth.LogoutView.as_view(template_name= 'index.html'),name='logout'),
     path('register/',user_view.register,name='register'),
@@ -60,6 +62,9 @@ urlpatterns = [
     path('roomtype/update/<pk>',roomtype_view.RoomTypeUpdate.as_view(),name="roomtype_update"),
     path('roomtype/detail/<pk>',roomtype_view.RoomTypeDetail.as_view(),name="roomtype_detail"),
 
-    path('invoice/',user_view.Invoice,name="invoice"),
-    path('receipt/',user_view.Receipt,name="receipt"),
+    path('receipt',receipt_view.index,name="receipt"),
+    path('receipt/list',receipt_view.ReceiptList.as_view(),name="receipt_list"),
+    path('receipt/create',receipt_view.ReceiptCreate.as_view(),name="receipt_create"),
+    path('receipt/update/<pk>',receipt_view.ReceiptUpdate.as_view(),name="receipt_update"),
+    path('receipt/delete/<pk>',receipt_view.ReceiptDelete.as_view(),name="receipt_delete"),
 ]

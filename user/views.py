@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import get_template
 from django.template import Context
-
+from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.views.generic import View
 from django.http import JsonResponse
@@ -19,8 +19,18 @@ from django.forms.models import model_to_dict
 from django.db.models import Max
 from django.db import connection
 import json
+##################################################################
+##################################################################
 
-
+class UserList(View):
+    def get(self, request):
+        print('aaaaaaaaaaaaaaaaaaa')
+        user = list(User.objects.all().values())        
+        data = dict()
+        data['user'] = user
+        response = JsonResponse(data)
+        response["Access-Control-Allow-Origin"] = "*"
+        return response
 ##################################################################
 ####################index#######################################
 def index(request):
@@ -114,6 +124,7 @@ def HotelReservation(request):
         return render(request, 'reserve/reserve.html')
     else: 
         return index(request)
+
 def TotalPayment(request):
     if request.user.is_authenticated:
         return render(request,'bill/totalpayment.html')
