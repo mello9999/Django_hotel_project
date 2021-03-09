@@ -1,4 +1,4 @@
-# P-Eye-and-Friends-Hotel-Management
+# Django_hotel_project
 โปรเจ็คนี้เป็นส่วนหนึ่ง CPE231 Database  System จัดทำโดย นักศึกษาชั้นปีที่ 3 มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าธนบุรี
 
 ### Authors 
